@@ -10,7 +10,7 @@ import android.os.Bundle;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class sns_main extends AppCompatActivity {
 
     private sns_main_recyclerAdapter adapter;
     @Override
