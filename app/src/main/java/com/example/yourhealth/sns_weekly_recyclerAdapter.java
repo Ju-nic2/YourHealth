@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class recyclerAdapter {
+public class sns_weekly_recyclerAdapter {
     public static class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ItemViewHolder> {
 
         // adapter에 들어갈 list 입니다.

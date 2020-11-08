@@ -6,11 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class sns_weekly extends AppCompatActivity {
-    private recyclerAdapter.RecyclerAdapter adapter;
+    private sns_weekly_recyclerAdapter.RecyclerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +24,7 @@ public class sns_weekly extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        adapter = new recyclerAdapter.RecyclerAdapter();
+        adapter = new sns_weekly_recyclerAdapter.RecyclerAdapter();
         recyclerView.setAdapter(adapter);
     }
 
