@@ -13,6 +13,7 @@ public class sns_weekly extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sns_weekly);
 
+        //여기서 FB로부터 post_content 객체의 제목, 작성자, 프로필사진, 게시글 번호만 가져와서 배열에 넣을 생각임
         init();
 
         getData();

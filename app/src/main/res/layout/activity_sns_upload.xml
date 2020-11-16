@@ -9,12 +9,14 @@
         android:orientation="vertical">
 
         <EditText
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:hint="제목"
-        android:inputType="text" />
+            android:layout_width="match_parent"
+            android:id="@+id/text_title"
+            android:layout_height="40dp"
+            android:hint="제목"
+            android:inputType="text" />
 
         <EditText
+            android:id="@+id/text_content"
             android:layout_width="match_parent"
             android:layout_height="600dp"
             android:gravity="top"
@@ -39,26 +41,36 @@
                 android:text="장소"
                 android:textSize="20dp" />
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="헬스장" />
+            <RadioGroup
+                android:id="@+id/RadioGroub_place"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="집" />
+                <RadioButton
+                    android:id="@+id/button_fitnessCenter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="헬스장" />
+                <RadioButton
+                    android:id="@+id/button_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="집" />
+                <RadioButton
+                    android:id="@+id/button_outdoor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="야외" />
+            </RadioGroup>
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="야외" />
         </LinearLayout>
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border"
@@ -73,23 +85,31 @@
                 android:text="난이도"
                 android:textSize="20dp" />
 
-            <CheckBox
+            <RadioGroup
+                android:id="@+id/RadioGroub_difficulty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/button_novice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="초급" />
-
-            <CheckBox
+            <RadioButton
+                android:id="@+id/button_intermediate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="중급" />
-
-            <CheckBox
+            <RadioButton
+                android:id="@+id/button_advance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="상급" />
+            </RadioGroup>
         </LinearLayout>
 
         <LinearLayout
@@ -107,17 +127,25 @@
                 android:text="대상"
                 android:textSize="20dp" />
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="남성" />
+            <RadioGroup
+                android:id="@+id/RadioGroub_sex"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="여성" />
+                <RadioButton
+                    android:id="@+id/button_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="남성" />
+                <RadioButton
+                    android:id="@+id/button_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="여성" />
+            </RadioGroup>
 
         </LinearLayout>
 
@@ -129,67 +157,40 @@
             android:padding="5dp">
 
             <TextView
-                android:layout_width="60dp"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:gravity="center_horizontal"
-                android:text="운동 일수"
-                android:textSize="20dp" />
-
-            <LinearLayout
+                android:text="운동일수"
+                android:textSize="18dp" />
+            <RadioGroup
+                android:id="@+id/RadioGroub_frequency"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <RadioButton
+                    android:id="@+id/button_twoToThree"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    android:text="주2~3회" />
 
-                    <CheckBox
-                        android:layout_width="65dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="주1~2회" />
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="주3회" />
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="주4회" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <RadioButton
+                    android:id="@+id/button_fourToFive"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    android:text="주4~5회" />
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="주5회" />
+                <RadioButton
+                    android:id="@+id/button_sixToSeven"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="주6~7회" />
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="주6회" />
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="주7회" />
-                </LinearLayout>
-            </LinearLayout>
+            </RadioGroup>
 
         </LinearLayout>
 
@@ -201,67 +202,40 @@
             android:padding="5dp">
 
             <TextView
-                android:layout_width="60dp"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="10dp"
                 android:gravity="center_horizontal"
-                android:text="운동 시간"
-                android:textSize="20dp" />
-
-            <LinearLayout
+                android:text="운동시간"
+                android:textSize="18dp" />
+            <RadioGroup
+                android:id="@+id/RadioGroub_time"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <RadioButton
+                    android:id="@+id/button_twentyToForty"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    android:text="20~40분" />
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="10~30분" />
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="30~50분" />
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="50~70분" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <RadioButton
+                    android:id="@+id/button_fortyToSeventy"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    android:text="40~70분" />
 
-                    <CheckBox
-                        android:layout_width="95dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="70~90분" />
+                <RadioButton
+                    android:id="@+id/button_aboveSeventy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="70분이상" />
 
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="90~120분" />
-
-                    <CheckBox
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="120분이상" />
-                </LinearLayout>
-            </LinearLayout>
+            </RadioGroup>
 
         </LinearLayout>
 
@@ -290,6 +264,7 @@
                 android:orientation="horizontal">
 
                 <Button
+                    android:id="@+id/button_upload"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#F1924A"
@@ -297,6 +272,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/button_tempSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#F1924A"
