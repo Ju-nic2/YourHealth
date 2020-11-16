@@ -1,6 +1,6 @@
 package com.example.yourhealth;
 
-public class post_content {
+public class postContent {
     private String title;
     private String content;
     private int place;
@@ -11,7 +11,7 @@ public class post_content {
     private Boolean completed;
     private String photo;
     private Routine routine;
-
+    private int postID;
     final int PLACE_FITNESSCENTER = 0;
     final int PLACE_HOME = 1;
     final int PLACE_OUTDOOR = 2;
@@ -106,4 +106,11 @@ public class post_content {
         this.completed = completed;
     }
 
+    public int getPostID() {
+        return postID;
+    }
+
+    public void setPostID(int postID) {
+        this.postID = postID;
+    }
 }

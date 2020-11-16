@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 public class sns_upload extends AppCompatActivity {
@@ -20,7 +19,7 @@ public class sns_upload extends AppCompatActivity {
         Button upload = findViewById(R.id.button_upload);
         Button tempSave = findViewById(R.id.button_tempSave);
 
-        final post_content post = new post_content();
+        final postContent post = new postContent();
 
         RadioGroup place = findViewById(R.id.RadioGroub_place);
         RadioGroup difficulty = findViewById(R.id.RadioGroub_difficulty);
@@ -78,7 +77,8 @@ public class sns_upload extends AppCompatActivity {
                 EditText content = (EditText)findViewById(R.id.text_content);
                 post.setTitle(title.getText().toString());
                 post.setContent(content.getText().toString());
-                /*
+                post.setCompleted(true);
+/*
                 Log.d("Place", ""+post.getPlace());
                 Log.d("Difficulty", ""+post.getDifficulty());
                 Log.d("Sex", ""+post.getSex());
@@ -86,9 +86,10 @@ public class sns_upload extends AppCompatActivity {
                 Log.d("Time", ""+post.getTime());
                 Log.d("Title", post.getTitle());
                 Log.d("Content", post.getContent());
-                */
 
 
+*/
+                //post 객체 FB로 업로드
 
             }
         });

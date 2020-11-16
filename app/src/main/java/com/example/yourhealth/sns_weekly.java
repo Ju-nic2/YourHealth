@@ -13,7 +13,7 @@ public class sns_weekly extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sns_weekly);
 
-        //여기서 FB로부터 post_content 객체의 제목, 작성자, 프로필사진, 게시글 번호만 가져와서 배열에 넣을 생각임
+        //여기서 FB로부터 postContent 객체의 제목, 작성자, 프로필사진, 게시글 번호만 가져와서 배열에 넣을 생각임
         init();
 
         getData();
@@ -38,7 +38,7 @@ public class sns_weekly extends AppCompatActivity {
             data.setTitle("루틴 제목 " + i);
             data.setName("이상윤");
             data.setResId(R.drawable.heart);
-
+            data.setPostID(10241);
             // 각 값이 들어간 data를 adapter에 추가합니다.
             adapter.addItem(data);
         }
