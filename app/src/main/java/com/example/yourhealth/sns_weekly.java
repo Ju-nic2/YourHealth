@@ -39,7 +39,8 @@ public class sns_weekly extends AppCompatActivity {
             data.setName("이상윤");
             data.setResId(R.drawable.heart);
             data.setPostID(10241);
-            // 각 값이 들어간 data를 adapter에 추가합니다.
+            // 각 값이 들어간 data를 adapter에 추가
+            // FB에서 가져와야함.
             adapter.addItem(data);
         }
 

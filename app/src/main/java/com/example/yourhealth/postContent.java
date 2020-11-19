@@ -11,6 +11,8 @@ public class postContent {
     private Boolean completed;
     private String photo;
     private Routine routine;
+    private int userID;
+
     private int postID;
     final int PLACE_FITNESSCENTER = 0;
     final int PLACE_HOME = 1;

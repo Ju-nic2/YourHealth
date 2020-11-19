@@ -78,17 +78,17 @@ public class sns_upload extends AppCompatActivity {
                 post.setTitle(title.getText().toString());
                 post.setContent(content.getText().toString());
                 post.setCompleted(true);
-/*
+                Log.d("Title", post.getTitle());
+                Log.d("Content", post.getContent());
                 Log.d("Place", ""+post.getPlace());
                 Log.d("Difficulty", ""+post.getDifficulty());
                 Log.d("Sex", ""+post.getSex());
                 Log.d("Frequency", ""+post.getFrequency());
                 Log.d("Time", ""+post.getTime());
-                Log.d("Title", post.getTitle());
-                Log.d("Content", post.getContent());
 
 
-*/
+
+
                 //post 객체 FB로 업로드
 
             }
