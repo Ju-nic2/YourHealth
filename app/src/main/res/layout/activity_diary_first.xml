@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:text="다이어리"
+        android:textColor="#000000"
+        android:fontFamily="@font/main_font"
+        android:textSize="24sp"/>
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:focusedMonthDateColor="#3FC8BB"
+        android:unfocusedMonthDateColor="#3FC8BB"/>
+
+    <LinearLayout
+        android:id="@+id/memoView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/calendarView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/write_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="운동일지 작성"
+            android:fontFamily="@font/main_font"
+            android:textSize="20sp"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

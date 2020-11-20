@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+        //#3FC8BB
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:text="다이어리"
+            android:fontFamily="@font/main_font"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#3FC8BB"
+            android:fontFamily="@font/main_font"
+            android:hint="제목" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="운동종류"
+                android:textColor="#000000"
+                android:fontFamily="@font/main_font"
+                android:textSize="15sp"
+                android:layout_marginLeft="30dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="무게"
+                android:textColor="#000000"
+                android:fontFamily="@font/main_font"
+                android:textSize="15sp"
+                android:layout_marginLeft="30dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="세트"
+                android:textColor="#000000"
+                android:fontFamily="@font/main_font"
+                android:textSize="15sp"
+                android:layout_marginLeft="30dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="횟수"
+                android:textColor="#000000"
+                android:fontFamily="@font/main_font"
+                android:textSize="15sp"
+                android:layout_marginLeft="30dp" />
+
+            <Button
+                android:id="@+id/pushButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:fontFamily="@font/main_font"
+                android:text="추가"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:background="#3FC8BB"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

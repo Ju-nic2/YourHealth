@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/stateLinear"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_rounded_corner"
+                    android:fontFamily="@font/main_font"
+                    android:hint="운동종류"
+                    android:maxLines="1"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/popButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:fontFamily="@font/main_font"
+                    android:background="@drawable/button_circle"
+                    android:text="x"
+                    android:textSize="15sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+                </Space>
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:background="@drawable/edittext_rounded_corner"
+                    android:fontFamily="@font/main_font"
+                    android:hint="무게"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:background="@drawable/edittext_rounded_corner"
+                    android:fontFamily="@font/main_font"
+                    android:hint="세트"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:background="@drawable/edittext_rounded_corner"
+                    android:fontFamily="@font/main_font"
+                    android:hint="횟수"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:textSize="20sp" />
+
+
+                //android:background="@drawable/button_circle"
+        </LinearLayout>
+
+</LinearLayout>
