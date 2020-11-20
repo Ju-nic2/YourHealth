@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".mainmenuActivity">
+
+    <RelativeLayout
+        android:id="@+id/mianframe"
+        android:layout_width="match_parent"
+        android:layout_height="215dp">
+
+        <ImageView
+            android:id="@+id/mainPhoto"
+            android:layout_width="142dp"
+            android:layout_height="205dp"
+            app:srcCompat="@drawable/sample" />
+
+        <TextView
+            android:id="@+id/mainname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="229dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/custom"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/mainpurpose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="false"
+            android:layout_marginStart="244dp"
+            android:layout_marginTop="85dp"
+            android:layout_marginBottom="284dp"
+            android:fontFamily="@font/custom"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/mainpurpose2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="244dp"
+            android:layout_marginTop="152dp"
+            android:fontFamily="@font/custom"
+            android:text="TextView"
+            android:textColor="#000000"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+</LinearLayout>

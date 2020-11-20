@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:fontFamily="@font/custom"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:paddingRight="100dp"
+        android:paddingBottom="20dp"
+        android:text="프로필 이미지 설정        "
+        android:textColor="#000000"
+        android:textColorLink="#000000"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/getAlbum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:fontFamily="@font/custom"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:paddingRight="100dp"
+        android:paddingBottom="20dp"
+        android:text="앨범에서 가져오기"
+        android:textColor="#3E3D3D"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/setdefault"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:fontFamily="@font/custom"
+        android:paddingLeft="10dp"
+        android:paddingTop="20dp"
+        android:paddingRight="100dp"
+        android:paddingBottom="20dp"
+        android:text="기본이미지로 설정"
+        android:textColor="#3E3D3D"
+        android:textSize="15sp" />
+</LinearLayout>
