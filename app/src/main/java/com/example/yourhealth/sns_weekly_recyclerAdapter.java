@@ -1,5 +1,8 @@
 package com.example.yourhealth;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -73,19 +77,17 @@ public class sns_weekly_recyclerAdapter {
 
                     @Override
                     public void onClick(View view) {
-                        Log.d("PostID : ", ""+postid);
-                        //이 postid로 FB에서 게시글 가져올거임.
-                        postContent post = new postContent();//가져온 걸 postContent 객체에 담을거임
-                        post.setTitle("8주 해병 루틴");
-                        post.setContent("8주 해병루틴\n에 대한\n 내용");
-                        post.setCompleted(true);
-                        post.setDifficulty(post.DIFFICULTY_ADVANCE);
-                        post.setFrequency(post.FREQUENCY_FOURFIVE);
-                        post.setSex(post.SEX_FEMALE);
-                        post.setPlace(post.PLACE_FITNESSCENTER);
-                        post.setTime(post.TIME_ABOVESEVENTY);
-                        //지금은 임시로 담았지만 FB에서 불러와야 함
-                        //이제 이걸 intent에 넣고 sns_routine.java로 던지면 됨
+
+                        ComponentName componentName = new ComponentName(
+                                "com.example.yourhealth",
+                                "com.example.yourhealth.sns_routine"
+                        );
+                        Intent intent = new Intent();
+                        intent.setComponent(componentName);
+
+
+                        intent.putExtra("postid", postid);
+                        view.getContext().startActivity(intent);
 
 
                     }

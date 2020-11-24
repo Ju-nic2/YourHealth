@@ -13,7 +13,7 @@ public class sns_weekly extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sns_weekly);
 
-        //여기서 FB로부터 postContent 객체의 제목, 작성자, 프로필사진, 게시글 번호만 가져와서 배열에 넣을 생각임
+
         init();
 
         getData();
@@ -31,7 +31,7 @@ public class sns_weekly extends AppCompatActivity {
 
     private void getData() {
 
-
+        //여기서 FB로부터 제목, 작성자, 프로필사진, 게시글 번호 가져옴. 20개.
         for (int i = 0; i < 20; i++) {
             // 각 List의 값들을 data 객체에 set 해줍니다.
             post data = new post();

@@ -10,5 +10,6 @@ public class sns_routine extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sns_routine2);
+        
     }
 }
