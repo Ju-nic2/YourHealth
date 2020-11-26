@@ -34,9 +34,11 @@ public class sns_main extends AppCompatActivity {
     private void getData() {
 
 
-        List<String> category = Arrays.asList("주간 인기 루틴", "#힙업", "#자세교정", "#홈트");
+        List<String> category = Arrays.asList("#많은 사람들이 좋아한", "#힙업", "#자세교정", "#홈트");
+        //FB에서 받아올 것 : 유저가 설정한 카테고리
         for (int i = 0; i < 4; i++) {
-            // 각 List의 값들을 data 객체에 set 해줍니다.
+            //FB에서 받아올 것 : 게시글 제목이랑 작성자(일단)
+            //하나의 postBox에 post 3개씩 넣을것임.
             post post1 = new post();
             post post2 = new post();
             post post3 = new post();
