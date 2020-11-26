@@ -106,8 +106,10 @@ public class sns_upload extends AppCompatActivity  {
 
                 EditText title = (EditText) findViewById(R.id.text_title);
                 EditText content = (EditText) findViewById(R.id.text_content);
+                EditText category1 = (EditText) findViewById(R.id.category1);
                 post.setTitle(title.getText().toString());
                 post.setContent(content.getText().toString());
+                post.setCategory1(category1.getText().toString());
                 post.setCompleted(true);
                 Log.d("Title", post.getTitle());
                 Log.d("Content", post.getContent());
@@ -137,8 +139,10 @@ public class sns_upload extends AppCompatActivity  {
 
                 EditText title = (EditText) findViewById(R.id.text_title);
                 EditText content = (EditText) findViewById(R.id.text_content);
+                EditText category1 = (EditText) findViewById(R.id.category1);
                 post.setTitle(title.getText().toString());
                 post.setContent(content.getText().toString());
+                post.setCategory1(category1.getText().toString());
                 post.setCompleted(false);
                 Log.d("Title", post.getTitle());
                 Log.d("Content", post.getContent());

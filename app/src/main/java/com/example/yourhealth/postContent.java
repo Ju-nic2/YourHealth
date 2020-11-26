@@ -12,6 +12,7 @@ public class postContent {
     private String photo;
     private Routine routine;
     private int userID;
+    private String category1;
 
     private int postID;
     final int PLACE_FITNESSCENTER = 0;
@@ -114,5 +115,13 @@ public class postContent {
 
     public void setPostID(int postID) {
         this.postID = postID;
+    }
+
+    public String getCategory1() {
+        return category1;
+    }
+
+    public void setCategory1(String category1) {
+        this.category1 = category1;
     }
 }
