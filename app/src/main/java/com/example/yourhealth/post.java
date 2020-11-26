@@ -5,6 +5,8 @@ public class post {
     private String name = "Name";
     private int resId;
     private int postID;
+
+
     public String getTitle() {
         return title;
     }

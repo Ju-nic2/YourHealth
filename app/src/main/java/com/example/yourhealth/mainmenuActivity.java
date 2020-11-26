@@ -3,10 +3,13 @@ package com.example.yourhealth;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,13 +24,15 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class mainmenuActivity extends AppCompatActivity {
+public class mainmenuActivity extends AppCompatActivity implements View.OnClickListener {
     TextView username;
     TextView userpurpose;
     TextView userplace;
 
     ImageView userphoto;
     String image;
+
+    Button tmpBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,9 @@ public class mainmenuActivity extends AppCompatActivity {
         userpurpose = findViewById(R.id.mainpurpose);
         userplace = findViewById(R.id.mainpurpose2);
         userphoto = findViewById(R.id.mainPhoto);
+
+        tmpBtn = findViewById(R.id.tmptestbutton);
+        tmpBtn.setOnClickListener(this);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -66,8 +74,13 @@ public class mainmenuActivity extends AppCompatActivity {
         });
 
 
+    }
 
-
-
+    @Override
+    public void onClick(View view) {
+        if(view == tmpBtn){
+            Intent intent = new Intent(getApplicationContext(), sns_main.class);
+            startActivity(intent);
+        }
     }
 }
