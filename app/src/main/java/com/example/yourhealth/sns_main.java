@@ -5,18 +5,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class sns_main extends AppCompatActivity {
+public class sns_main extends AppCompatActivity implements View.OnClickListener{
+    Button uploadBtn;
 
     private sns_main_recyclerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sns_main);
+
+        uploadBtn = findViewById(R.id.button_upload);
+        uploadBtn.setOnClickListener(this);
+
         init();
 
         getData();
@@ -58,14 +66,19 @@ public class sns_main extends AppCompatActivity {
 
             pBox.setCategory(category.get(i));
 
-
-
-
             // 각 값이 들어간 data를 adapter에 추가합니다.
             adapter.addItem(pBox);
         }
 
         // adapter의 값이 변경되었다는 것을 알려줍니다.
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == uploadBtn){
+            Intent intent = new Intent(getApplicationContext(), sns_upload.class);
+            startActivity(intent);
+        }
     }
 }

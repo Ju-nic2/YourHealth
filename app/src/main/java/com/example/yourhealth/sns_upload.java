@@ -1,25 +1,55 @@
 package com.example.yourhealth;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
-public class sns_upload extends AppCompatActivity {
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+public class sns_upload extends AppCompatActivity  {
+
+    Button imageUplode;
+    ImageView snsimage;
+    Uri snsimageUri;
+    String snsphotourl;
+
+
+    final postContent post = new postContent();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sns_upload);
 
+        imageUplode = findViewById(R.id.button_imageupload);
+        snsimage = findViewById(R.id.snsimage);
+
         Button upload = findViewById(R.id.button_upload);
         Button tempSave = findViewById(R.id.button_tempSave);
 
-        final postContent post = new postContent();
+
 
         RadioGroup place = findViewById(R.id.RadioGroub_place);
         RadioGroup difficulty = findViewById(R.id.RadioGroub_difficulty);
@@ -39,59 +69,207 @@ public class sns_upload extends AppCompatActivity {
         difficulty.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i==R.id.button_novice) post.setDifficulty(post.DIFFICULTY_NOVICE);
-                else if (i==R.id.button_intermediate) post.setDifficulty(post.DIFFICULTY_INTERMEDIATE);
-                else if (i==R.id.button_advance) post.setDifficulty(post.DIFFICULTY_ADVANCE);
+                if (i == R.id.button_novice) post.setDifficulty(post.DIFFICULTY_NOVICE);
+                else if (i == R.id.button_intermediate)
+                    post.setDifficulty(post.DIFFICULTY_INTERMEDIATE);
+                else if (i == R.id.button_advance) post.setDifficulty(post.DIFFICULTY_ADVANCE);
             }
         });
         sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i==R.id.button_male) post.setSex(post.SEX_MALE);
-                else if (i==R.id.button_female) post.setSex(post.SEX_FEMALE);
+                if (i == R.id.button_male) post.setSex(post.SEX_MALE);
+                else if (i == R.id.button_female) post.setSex(post.SEX_FEMALE);
             }
         });
         frequency.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i==R.id.button_twoToThree) post.setFrequency(post.FREQUENCY_TOTHREE);
-                else if (i==R.id.button_fourToFive) post.setFrequency(post.FREQUENCY_FOURFIVE);
-                else if (i==R.id.button_sixToSeven) post.setFrequency(post.FREQUENCY_SIXTOSEVEN);
+                if (i == R.id.button_twoToThree) post.setFrequency(post.FREQUENCY_TOTHREE);
+                else if (i == R.id.button_fourToFive) post.setFrequency(post.FREQUENCY_FOURFIVE);
+                else if (i == R.id.button_sixToSeven) post.setFrequency(post.FREQUENCY_SIXTOSEVEN);
             }
         });
         time.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i==R.id.button_twentyToForty) post.setTime(post.TIME_TWENTYTOFORTY);
-                else if (i==R.id.button_fortyToSeventy) post.setTime(post.TIME_FORTYTOSEVENTY);
-                else if (i==R.id.button_aboveSeventy) post.setTime(post.TIME_ABOVESEVENTY);
+                if (i == R.id.button_twentyToForty) post.setTime(post.TIME_TWENTYTOFORTY);
+                else if (i == R.id.button_fortyToSeventy) post.setTime(post.TIME_FORTYTOSEVENTY);
+                else if (i == R.id.button_aboveSeventy) post.setTime(post.TIME_ABOVESEVENTY);
             }
         });
 
-        upload.setOnClickListener(new View.OnClickListener(){
+        upload.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
 
-                EditText title = (EditText)findViewById(R.id.text_title);
-                EditText content = (EditText)findViewById(R.id.text_content);
+                EditText title = (EditText) findViewById(R.id.text_title);
+                EditText content = (EditText) findViewById(R.id.text_content);
                 post.setTitle(title.getText().toString());
                 post.setContent(content.getText().toString());
                 post.setCompleted(true);
                 Log.d("Title", post.getTitle());
                 Log.d("Content", post.getContent());
-                Log.d("Place", ""+post.getPlace());
-                Log.d("Difficulty", ""+post.getDifficulty());
-                Log.d("Sex", ""+post.getSex());
-                Log.d("Frequency", ""+post.getFrequency());
-                Log.d("Time", ""+post.getTime());
-
-
-
+                Log.d("Place", "" + post.getPlace());
+                Log.d("Difficulty", "" + post.getDifficulty());
+                Log.d("Sex", "" + post.getSex());
+                Log.d("Frequency", "" + post.getFrequency());
+                Log.d("Time", "" + post.getTime());
+                uploadsns();
 
                 //post 객체 FB로 업로드
 
             }
         });
+        imageUplode.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), chooseActivity.class);
+                startActivityForResult(intent, 1235);
+            }
+        });
+        tempSave.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                EditText title = (EditText) findViewById(R.id.text_title);
+                EditText content = (EditText) findViewById(R.id.text_content);
+                post.setTitle(title.getText().toString());
+                post.setContent(content.getText().toString());
+                post.setCompleted(false);
+                Log.d("Title", post.getTitle());
+                Log.d("Content", post.getContent());
+                Log.d("Place", "" + post.getPlace());
+                Log.d("Difficulty", "" + post.getDifficulty());
+                Log.d("Sex", "" + post.getSex());
+                Log.d("Frequency", "" + post.getFrequency());
+                Log.d("Time", "" + post.getTime());
+                uploadsns();
+
+                //post 객체 FB로 업로드
+
+            }
+        });
+
+    }
+
+
+
+    public void uploadsns(){
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
+
+        db.collection("PostContents").document(user.getUid()).set(post)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        showToast("저장굳");
+                        Intent intent = new Intent(getApplicationContext(), logInActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                        startActivity(intent);
+                        // Log.d(TAG, "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        showToast("저장배드");
+                        //    Log.w(TAG, "Error writing document", e);
+                    }
+                });
+
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1235 && resultCode == RESULT_OK) {
+            snsimageUri=data.getData();
+            RequestOptions option1 = new RequestOptions().circleCrop();
+            Glide.with(getApplicationContext()).load(snsimageUri).apply(option1).into(snsimage);
+            post.setPhoto(snsimageUri.toString());
+
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            final  StorageReference riversRef = storageRef.child("snsImages/"+user.getUid()+"snsImage");
+            UploadTask uploadTask = riversRef.putFile(snsimageUri);
+            uploadTask.addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle unsuccessful uploads
+                }
+            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                    // ...
+                }
+            });
+
+            //저장후 url 받아오기
+            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()) {
+                        throw task.getException();
+                    }
+
+                    // Continue with the task to get the download URL
+                    return riversRef.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()) {
+                        Uri downloadUri = task.getResult();
+                        snsphotourl = downloadUri.toString();
+                        post.setPhoto(snsphotourl);
+                    } else {
+                        //howToast("업로드 실패");
+                        // Handle failures
+                        // ...
+                    }
+                }
+            });
+        }
+
+
+        else if (requestCode == 1235 && resultCode == RESULT_CANCELED) {
+            RequestOptions option1 = new RequestOptions().circleCrop();
+            Glide.with(getApplicationContext()).load(R.drawable.sample).apply(option1).into(snsimage);
+            // Create a storage reference from our app
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReference();
+
+            // Create a reference to the file to delete
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            StorageReference desertRef = storageRef.child("snsImages/"+user.getUid()+"snsImage");
+
+            // Delete the file
+            desertRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    showToast("기본 이미지");
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    showToast("원래 기본 이미지");
+                }
+            });
+
+        }
+
+
+    }
+    private void showToast(String message) {
+        Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        toast.show();
     }
 }
