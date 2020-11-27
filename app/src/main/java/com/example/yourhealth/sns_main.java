@@ -15,7 +15,12 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -24,9 +29,13 @@ import java.util.Arrays;
 import java.util.List;
 
 public class sns_main extends AppCompatActivity implements View.OnClickListener{
+
     Button uploadBtn;
-    final List<String> category1 = new ArrayList<String>();
+
+    List<String> category1 = new ArrayList<String>();
+
     private sns_main_recyclerAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,12 +44,18 @@ public class sns_main extends AppCompatActivity implements View.OnClickListener{
         uploadBtn = findViewById(R.id.button_upload);
         uploadBtn.setOnClickListener(this);
 
+
+
         init();
 
         getCategory();
 
+        getData();
+
+
+
     }
-    private void init() {
+    public void init() {
         RecyclerView recyclerView = findViewById(R.id.sns_main_recyclerview);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -48,62 +63,40 @@ public class sns_main extends AppCompatActivity implements View.OnClickListener{
 
         adapter = new sns_main_recyclerAdapter();
         recyclerView.setAdapter(adapter);
-    }
-    private void getCategory(){
 
+    }
+    public void getCategory(){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("PostContents")
-                //  .whereEqualTo("title", "sex")
-                .get()
+        CollectionReference PostContents = db.collection("PostContents");
+        int i=0;
+
+        PostContents.get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                category1.add(document.getData().get("category1").toString());
+                 @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                     if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            String tmp = document.getData().get("category1").toString();
 
-                                Log.d("크기확임", "이것좀봐바"+ " => " +category1.size());
-                            }
-                        } else {
-                            // Log.d(TAG, "Error getting documents: ", task.getException());
-                        }
+                              Log.d("이게 섹스지",  " => " +tmp+"번 하자");
+
+                         }
+                     } else {
+                    // Log.d(TAG, "Error getting documents: ", task.getException());
                     }
-                });
+                }
+        });
 
-        getData();
+
+
+
+
+
     }
-    private void getData() {
+    public void getData()
+    {
 
-        Log.d("데이터 가져올래", "이것좀봐바"+ " => " +category1.size());
-
-        for(int j=0;j<category1.size();j++) {
-           final ArrayList<post> postlist = new ArrayList<>();
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("PostContents")
-                    .whereEqualTo("category1", category1.get(j))
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                   postlist.add(new post(
-                                           document.getData().get("title").toString(),
-                                           document.getData().get("content").toString(),
-                                           1,1));
-                                   showToast(postlist.get(0).getName());
-                                      Log.d("로그", "데이타확인" + " => " + document.getData().get("title"));
-                                }
-                            } else {
-                                showToast("실패");
-                                // Log.d(TAG, "Error getting documents: ", task.getException());
-                            }
-                        }
-                    });
-
-        }
-
-
+        Log.d("이게 섹스지",  " => " +category1.size()+"번 해야해");
         List<String> category = Arrays.asList("주간 인기 루틴", "#힙업", "#자세교정", "#홈트");
         for (int i = 0; i < 4; i++) {
             // 각 List의 값들을 data 객체에 set 해줍니다.
@@ -124,7 +117,7 @@ public class sns_main extends AppCompatActivity implements View.OnClickListener{
             post3.setTitle("Title_p3" + i);
             pBox.setPost3(post3);
 
-            pBox.setCategory(category.get(0));
+            pBox.setCategory(category.get(i));
 
             // 각 값이 들어간 data를 adapter에 추가합니다.
             adapter.addItem(pBox);
