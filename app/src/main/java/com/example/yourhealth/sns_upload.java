@@ -169,14 +169,14 @@ public class sns_upload extends AppCompatActivity  {
 
 
 
-        db.collection("PostContents").document(user.getUid()).set(post)
+        db.collection("PostContents").document().set(post)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         showToast("저장굳");
-                        Intent intent = new Intent(getApplicationContext(), logInActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                        startActivity(intent);
+                      //  Intent intent = new Intent(getApplicationContext(), logInActivity.class);
+                       // intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                       // startActivity(intent);
                         // Log.d(TAG, "DocumentSnapshot successfully written!");
                     }
                 })

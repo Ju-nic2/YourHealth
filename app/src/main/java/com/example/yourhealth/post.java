@@ -2,9 +2,18 @@ package com.example.yourhealth;
 
 public class post {
     private String title;
-    private String name = "Name";
+    private String name;
     private int resId;
     private int postID;
+
+    public post(String title,String name,int resId, int postID){
+        this.title = title;
+        this.name = name;
+
+        this.resId = resId;
+        this.postID = postID;
+    }
+    public post(){}
 
 
     public String getTitle() {
