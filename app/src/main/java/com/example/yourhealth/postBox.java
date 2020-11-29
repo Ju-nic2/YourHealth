@@ -1,7 +1,8 @@
 package com.example.yourhealth;
 
 
-public class postBox {
+public class postBox
+{
     private String category = "카테고리";
     private post post1;
     private post post2;

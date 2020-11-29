@@ -1,6 +1,7 @@
 package com.example.yourhealth;
 
-public class postContent {
+public class postContent
+{
     private String title;
     private String content;
     private int place;
