@@ -6,14 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Storage extends AppCompatActivity {
+public class storage_start extends AppCompatActivity {
 
     Button routineBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_storage);
+        setContentView(R.layout.activity_storage_start);
 
         routineBtn = findViewById(R.id.routine_button);
 

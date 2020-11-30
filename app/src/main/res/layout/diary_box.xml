@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/diary_box"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:orientation="vertical" >
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="15dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#3FC8BB">
+
+                <EditText
+                    android:layout_width="350dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/main_font"
+                    android:maxLength="20"
+                    android:hint="운동종류"
+                    android:textSize="17sp"
+                    android:backgroundTint="#000000"/>
+
+                <Space
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                        <Button
+                            android:id="@+id/button_delete_diary_box"
+                            android:background="@drawable/button_circle"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:fontFamily="@font/main_font"
+                            android:text="x"
+                            android:textSize="10sp" />
+                </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:background="@drawable/boxline"
+            android:weightSum="6">
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/main_font"
+                    android:hint="무게"
+                    android:inputType="phone"
+                    android:maxLength="3"
+                    android:textSize="15sp"
+                    android:backgroundTint="#FFFFFF"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="kg"
+                    android:textSize="15sp"
+                    android:textColor="#000000"
+                    android:fontFamily="@font/main_font"/>
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:fontFamily="@font/main_font"
+                    android:hint="세트"
+                    android:inputType="phone"
+                    android:maxLength="3"
+                    android:textSize="15sp"
+                    android:backgroundTint="#FFFFFF"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="set"
+                    android:textSize="15sp"
+                    android:textColor="#000000"
+                    android:fontFamily="@font/main_font"/>
+
+                <EditText
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:fontFamily="@font/main_font"
+                    android:hint="횟수"
+                    android:inputType="phone"
+                    android:maxLength="3"
+                    android:textSize="15sp"
+                    android:backgroundTint="#FFFFFF"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="회"
+                    android:textSize="15sp"
+                    android:textColor="#000000"
+                    android:fontFamily="@font/main_font"/>
+
+        </LinearLayout>
+
+</LinearLayout>
