@@ -12,6 +12,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
+
 public class diary_main extends AppCompatActivity {
 
     InputMethodManager imm;
@@ -32,6 +34,7 @@ public class diary_main extends AppCompatActivity {
         addDiaryBoxBtn = findViewById(R.id.button_add_diary_box);
         diaryContainer = findViewById(R.id.container_diary);
         diaryBox = findViewById(R.id.diary_box);
+        final ArrayList<View> view_list = new ArrayList<View>();//상윤 추가:각 행들을 담을 배열
 
         //운동일지 행 추가 이벤트
         addDiaryBoxBtn.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +52,10 @@ public class diary_main extends AppCompatActivity {
                     }
                 });
                 //객체화 된 뷰를 추가 시켜준다.
+                view_list.add(v);
+                //상윤 추가: 이렇게 view_list에 행들을 담아놓으면 나중에 저장 버튼에 리스너 달아서
+                //for문으로 반복하면서 각각의 textview의 값을 가져와서 객체에 넣으면 될듯
+                //그 객체는 class 하나 파서 만들어야 할듯
                 diaryContainer.addView(view);
             }
         });
