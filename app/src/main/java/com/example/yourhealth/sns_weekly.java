@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 public class sns_weekly extends AppCompatActivity {
     private sns_weekly_recyclerAdapter.RecyclerAdapter adapter;
@@ -12,8 +14,10 @@ public class sns_weekly extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sns_weekly);
-
-
+        Intent intent = getIntent();
+        String category = intent.getStringExtra("category");
+        TextView title = findViewById(R.id.Category);
+        title.setText(category);
         init();
 
         getData();

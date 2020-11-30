@@ -17,6 +17,8 @@ public class postContent
     private String category2;
     private String category3;
     private String category4;
+    private int num_heart;
+
 
 
     private int postID;
@@ -152,5 +154,21 @@ public class postContent
 
     public void setCategory4(String category4) {
         this.category4 = category4;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    public int getNum_heart() {
+        return num_heart;
+    }
+
+    public void setNum_heart(int num_heart) {
+        this.num_heart = num_heart;
     }
 }

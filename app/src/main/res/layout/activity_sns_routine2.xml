@@ -31,7 +31,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/NumOfHeart"
                 android:layout_marginLeft="15dp"
                 android:textStyle="bold"
                 android:textSize="20dp"
@@ -50,11 +50,11 @@
                 android:text="명이 좋아했어요!" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/heart"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="right"
-                app:srcCompat="@drawable/heart" />
+                app:srcCompat="@drawable/heart_black" />
         </LinearLayout>
 
         <LinearLayout

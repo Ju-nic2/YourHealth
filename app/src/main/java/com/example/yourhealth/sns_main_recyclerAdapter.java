@@ -1,5 +1,7 @@
 package com.example.yourhealth;
 
+import android.content.ComponentName;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,7 +85,24 @@ public class sns_main_recyclerAdapter extends RecyclerView.Adapter<sns_main_recy
             textView_name3.setText(post3.getName());
             textView_title3.setText(post3.getTitle());
 
-            textView_category.setText(data.getCategory());
+            final String category = data.getCategory();
+            textView_category.setText(category);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ComponentName componentName = new ComponentName(
+                            "com.example.yourhealth",
+                            "com.example.yourhealth.sns_weekly"
+                    );
+                    Intent intent = new Intent();
+                    intent.setComponent(componentName);
+
+
+                    intent.putExtra("category", category);
+                    view.getContext().startActivity(intent);
+                }
+            });
 
 
         }
