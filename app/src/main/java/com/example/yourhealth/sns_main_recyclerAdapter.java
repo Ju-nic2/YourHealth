@@ -98,7 +98,6 @@ public class sns_main_recyclerAdapter extends RecyclerView.Adapter<sns_main_recy
                     Intent intent = new Intent();
                     intent.setComponent(componentName);
 
-
                     intent.putExtra("category", category);
                     view.getContext().startActivity(intent);
                 }

@@ -72,7 +72,8 @@ public class sns_weekly_recyclerAdapter {
                 textView_title.setText(data.getTitle());
                 textView_name.setText(data.getName());
                 circleimageView.setImageResource(data.getResId());
-                final int postid = data.getPostID();
+                final String title = data.getTitle();
+                final String name = data.getName();
                 itemView.setOnClickListener(new View.OnClickListener(){
 
                     @Override
@@ -84,13 +85,10 @@ public class sns_weekly_recyclerAdapter {
                         );
                         Intent intent = new Intent();
                         intent.setComponent(componentName);
-
-
-                        intent.putExtra("postid", postid);
+                       intent.putExtra("title", title);
+                       intent.putExtra("name",name);
                         view.getContext().startActivity(intent);
-
-
-                    }
+             }
                 });
             }
         }

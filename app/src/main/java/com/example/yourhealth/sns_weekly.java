@@ -1,29 +1,106 @@
 package com.example.yourhealth;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
 public class sns_weekly extends AppCompatActivity {
+
+    private final Handler mHandler = new Handler() {
+        private final int MSG_A = 0 ;
+        private final int MSG_B = 1 ;
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MSG_A ://받은객체이용하여 화면에 띄워준다
+                    getfbData((post)msg.obj);
+                    Log.d("중복안되서 넣음이라는 메세지 받음", "상윤형담아 넣었데 ");
+
+                    break;
+                case MSG_B :
+                    Log.d("중복되서 안넣음이라는 메세지 받음", "상윤형담아 안넣었데 "); break ;
+
+                // TODO : add case.
+            }
+        }
+    } ;
     private sns_weekly_recyclerAdapter.RecyclerAdapter adapter;
+    String category;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sns_weekly);
         Intent intent = getIntent();
-        String category = intent.getStringExtra("category");
+        category = intent.getStringExtra("category");
+
+        //데이터 받아오는 쓰레드 임 해당 카테고리에 있는 데이터들 다 가져와
+        class weeklypost extends Thread{
+            Handler handler = mHandler ;
+
+            weeklypost(){}
+            @Override
+            public void run(){
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                final CollectionReference PostContents = db.collection("PostContents");
+                PostContents.whereEqualTo("category1", category)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        post data = new post();
+                                        data.setName(document.getData().get("userID").toString());
+                                        data.setTitle(document.getData().get("title").toString());
+                                        Message message = handler.obtainMessage() ;
+                                        message.what = 0;
+                                        message.obj = data;
+                                        handler.sendMessage(message);
+                                    }
+                                } else {
+                                }
+                            }
+
+                        });
+                go();
+
+            }
+        }
+        weeklypost getfdpost = new weeklypost();
+        getfdpost.start();
+
+
+
+
+
+
+    }
+    private void go(){
+        setContentView(R.layout.sns_weekly);
         TextView title = findViewById(R.id.Category);
         title.setText(category);
         init();
 
-        getData();
     }
 
     private void init() {
+
+
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -32,10 +109,21 @@ public class sns_weekly extends AppCompatActivity {
         adapter = new sns_weekly_recyclerAdapter.RecyclerAdapter();
         recyclerView.setAdapter(adapter);
     }
+     private void getfbData(post data) {
 
-    private void getData() {
+
+        //준익 수정 일단 있는만큼만.
+         data.setResId(R.drawable.heart);
+            data.setPostID(10241);
+
+            adapter.addItem(data);
+        adapter.notifyDataSetChanged();
+    }
+
+   /* private void getData() {
 
         //여기서 FB로부터 제목, 작성자, 프로필사진, 게시글 번호 가져옴. 20개.
+        //준익 수정 일단 있는만큼만.
         for (int i = 0; i < 20; i++) {
             // 각 List의 값들을 data 객체에 set 해줍니다.
             post data = new post();
@@ -48,7 +136,6 @@ public class sns_weekly extends AppCompatActivity {
             adapter.addItem(data);
         }
 
-        // adapter의 값이 변경되었다는 것을 알려줍니다.
         adapter.notifyDataSetChanged();
-    }
+    }*/
 }

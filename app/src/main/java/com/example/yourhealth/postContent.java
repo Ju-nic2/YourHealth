@@ -1,6 +1,8 @@
 package com.example.yourhealth;
 
-public class postContent
+import java.io.Serializable;
+
+public class postContent implements Serializable
 {
     private String title;
     private String content;
@@ -12,12 +14,13 @@ public class postContent
     private Boolean completed;
     private String photo;
     private Routine routine;
-    private int userID;
+    private String userID;
     private String category1;
     private String category2;
     private String category3;
     private String category4;
     private int num_heart;
+
 
 
 
@@ -36,6 +39,7 @@ public class postContent
     final int TIME_TWENTYTOFORTY = 11;
     final int TIME_FORTYTOSEVENTY = 12;
     final int TIME_ABOVESEVENTY = 13;
+    public postContent(){}
 
     public String getTitle() {
         return title;
@@ -156,11 +160,11 @@ public class postContent
         this.category4 = category4;
     }
 
-    public int getUserID() {
+    public String getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(String userID) {
         this.userID = userID;
     }
 

@@ -28,7 +28,7 @@ public class chooseActivity extends FragmentActivity implements View.OnClickList
     TextView gotoAlbum;
     TextView setDefault;
     private static final int PICK_FROM_ALBUM = 1;
-    private File tempFile;
+
     private Boolean isPermission = true;
 
 

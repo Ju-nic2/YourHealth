@@ -24,6 +24,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -43,11 +45,14 @@ public class sns_upload extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sns_upload);
 
+        //서비스 켜져있는지파악, 켜져있다면 데이타 있는지 파악. 있다면 받아옴
+
         imageUplode = findViewById(R.id.button_imageupload);
         snsimage = findViewById(R.id.snsimage);
 
         Button upload = findViewById(R.id.button_upload);
         Button tempSave = findViewById(R.id.button_tempSave);
+
 
 
 
@@ -119,6 +124,8 @@ public class sns_upload extends AppCompatActivity  {
                 post.setCategory4(category4.getText().toString());
 
 
+
+
                 post.setCompleted(true);
                 Log.d("Title", post.getTitle());
                 Log.d("Content", post.getContent());
@@ -169,7 +176,11 @@ public class sns_upload extends AppCompatActivity  {
                 Log.d("Sex", "" + post.getSex());
                 Log.d("Frequency", "" + post.getFrequency());
                 Log.d("Time", "" + post.getTime());
-                uploadsns();
+
+                Intent intent = new Intent(getApplicationContext(), tmpstorageService.class);
+                intent.putExtra("postContent",post);
+                startService(intent);
+               // uploadsns();
 
                 //post 객체 FB로 업로드
 
@@ -183,11 +194,16 @@ public class sns_upload extends AppCompatActivity  {
     public void uploadsns(){
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            for (UserInfo profile : user.getProviderData()) {
+                // Name, email address, and profile photo Url
+                String name = profile.getDisplayName();
+                post.setUserID(name);
+
+            }
+        }
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-
-
-        db.collection("PostContents").document().set(post)
+        db.collection("PostContents").document(post.getTitle()+post.getUserID()).set(post)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

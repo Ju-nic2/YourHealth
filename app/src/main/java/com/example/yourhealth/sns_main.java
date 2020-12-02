@@ -105,16 +105,16 @@ public class sns_main extends AppCompatActivity implements View.OnClickListener{
                                                             if (task.isSuccessful()) {
                                                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                                                     if(count ==0){
-                                                                        post1.setName(document.getData().get("content").toString());
+                                                                        post1.setName(document.getData().get("userID").toString());
                                                                         post1.setTitle(document.getData().get("title").toString());
                                                                         pBox.setPost1(post1);
                                                                         pBox.setCategory(document.getData().get("category1").toString());
                                                                     }else if(count == 1){
-                                                                        post2.setName(document.getData().get("content").toString());
+                                                                        post2.setName(document.getData().get("userID").toString());
                                                                         post2.setTitle(document.getData().get("title").toString());
                                                                         pBox.setPost2(post2);
                                                                     }else if(count == 2){
-                                                                        post3.setName(document.getData().get("content").toString());
+                                                                        post3.setName(document.getData().get("userID").toString());
                                                                         post3.setTitle(document.getData().get("title").toString());
                                                                         pBox.setPost3(post3);
                                                                     }
