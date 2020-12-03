@@ -18,18 +18,34 @@
             android:textColor="#000000"
             android:textSize="24sp" />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#3FC8BB"
-            android:fontFamily="@font/main_font"
-            android:hint="Memo" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:gravity="right">
+
+            <Button
+                android:id="@+id/button_save_diary_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/main_font"
+                android:text="저장"
+                android:textColor="#000000"
+                android:background="#3FC8BB"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/diary_memo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#3FC8BB"
+                android:fontFamily="@font/main_font"
+                android:hint="Memo" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
             <Button
                 android:id="@+id/button_add_diary_box"
                 android:layout_width="35dp"
@@ -39,6 +55,7 @@
                 android:text="추가"
                 android:textColor="#000000"
                 android:textSize="18sp" />
+
         </LinearLayout>
 
         <LinearLayout
