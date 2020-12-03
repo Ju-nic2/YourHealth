@@ -18,6 +18,7 @@
             android:background="#3FC8BB">
 
                 <EditText
+                    android:id="@+id/exercise"
                     android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/main_font"
@@ -54,6 +55,7 @@
             android:weightSum="6">
 
                 <EditText
+                    android:id="@+id/weight"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -75,6 +77,7 @@
                     android:fontFamily="@font/main_font"/>
 
                 <EditText
+                    android:id="@+id/set"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
@@ -96,6 +99,7 @@
                     android:fontFamily="@font/main_font"/>
 
                 <EditText
+                    android:id="@+id/rep"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
