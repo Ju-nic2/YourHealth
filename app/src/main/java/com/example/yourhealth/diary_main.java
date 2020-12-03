@@ -49,6 +49,7 @@ public class diary_main extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         ((LinearLayout)view.getParent()).removeView(view);
+                    view_list.clone();
                     }
                 });
                 //객체화 된 뷰를 추가 시켜준다.
