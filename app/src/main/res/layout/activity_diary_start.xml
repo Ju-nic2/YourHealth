@@ -20,8 +20,9 @@
         android:layout_below="@id/textView"
         android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:focusedMonthDateColor="#3FC8BB"
-        android:unfocusedMonthDateColor="#3FC8BB"/>
+        android:focusedMonthDateColor="#FFFFFF"
+        android:unfocusedMonthDateColor="#3FC8BB"
+        android:background="@drawable/boxline"/>
 
     <LinearLayout
         android:id="@+id/memoView"
@@ -42,7 +43,8 @@
             android:layout_height="match_parent"
             android:text="운동일지 작성"
             android:fontFamily="@font/main_font"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:background="@drawable/button_color"/>
 
     </LinearLayout>
 
