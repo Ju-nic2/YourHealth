@@ -48,7 +48,7 @@ public class sns_weekly extends AppCompatActivity {
         Intent intent = getIntent();
         category = intent.getStringExtra("category");
 
-        //데이터 받아오는 쓰레드 임 해당 카테고리에 있는 데이터들 다 가져와
+        //데이터 받아오는 쓰레드 임 해당 카테고리에
         class weeklypost extends Thread{
             Handler handler = mHandler ;
 

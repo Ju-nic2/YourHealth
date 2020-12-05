@@ -31,8 +31,12 @@
                 android:fontFamily="@font/main_font"
                 android:text="저장"
                 android:textColor="#000000"
-                android:background="#3FC8BB"
+                android:background="@drawable/button_color"
                 android:textSize="18sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
 
             <EditText
                 android:id="@+id/diary_memo"

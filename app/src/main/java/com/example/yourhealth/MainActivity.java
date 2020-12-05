@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); // xml과 java소스를 연결
+        setContentView(R.layout.intro_ativity); // xml과 java소스를 연결
     } // end of onCreate
 
     @Override

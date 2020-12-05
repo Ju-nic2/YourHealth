@@ -30,7 +30,8 @@ public class diary_main extends AppCompatActivity {
     //TextView diaryDate;
 
     String memo;
-    diary_data data = new diary_data();
+    //diary_data data = new diary_data();
+    diary_data_box dataBox = new diary_data_box();
     String date;
 
     @Override
@@ -65,8 +66,9 @@ public class diary_main extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         view_list.remove(view);
+                        //dataBox.getDay().remove();
                         ((LinearLayout)view.getParent()).removeView(view);
-                    view_list.clone();
+                        view_list.clone();
                     }
                 });
                 //객체화 된 뷰를 추가 시켜준다.
@@ -81,29 +83,44 @@ public class diary_main extends AppCompatActivity {
         saveDiaryBoxBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                memo = diaryMemo.getText().toString();
+                dataBox.setDate(date);
+                dataBox.setMemo(memo);
+                Log.d("date", dataBox.getDate());
+                Log.d("memo", dataBox.getMemo());
+                dataBox.initDay();
+
                 for(int i = 0; i < view_list.size(); i++)
                 {
-                    View diary_box  = view_list.get(i);
-                    memo = diaryMemo.getText().toString();
 
-                    EditText exercise = diary_box.findViewById(R.id.exercise);
-                    EditText weight = diary_box.findViewById(R.id.weight);
-                    EditText set = diary_box.findViewById(R.id.set);
-                    EditText rep = diary_box.findViewById(R.id.rep);
+                    View data_tmp  = view_list.get(i);
+                    diary_data data = new diary_data();
 
-                    data.setDate(date);
-                    data.setMemo(memo);
+                    EditText exercise = data_tmp.findViewById(R.id.exercise);
+                    EditText weight = data_tmp.findViewById(R.id.weight);
+                    EditText set = data_tmp.findViewById(R.id.set);
+                    EditText rep = data_tmp.findViewById(R.id.rep);
+
                     data.setExercise(exercise.getText().toString());
                     data.setWeight(weight.getText().toString());
                     data.setSet(set.getText().toString());
                     data.setRep(rep.getText().toString());
 
-                    Log.d("date", data.getDate());
-                    Log.d("memo", data.getMemo());
-                    Log.d("exercise", data.getExercise());
-                    Log.d("weight", data.getWeight());
-                    Log.d("set", data.getSet());
-                    Log.d("rep", data.getRep());
+                    //Log.d("exercise", data.getExercise());
+                    //Log.d("weight", data.getWeight());
+                    //Log.d("set", data.getSet());
+                    //Log.d("rep", data.getRep());
+
+                    dataBox.getDay().add(data);
+                }
+
+                for(int i = 0; i < dataBox.getDay().size(); i++)
+                {
+                    Log.d("exercise", dataBox.getDay().get(i).getExercise());
+                    Log.d("weight", dataBox.getDay().get(i).getWeight());
+                    Log.d("set", dataBox.getDay().get(i).getSet());
+                    Log.d("rep", dataBox.getDay().get(i).getRep());
                 }
             }
         });

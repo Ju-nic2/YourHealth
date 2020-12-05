@@ -5,9 +5,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ComponentName;
+
+import android.content.Context;
+
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -40,11 +45,42 @@ public class sns_upload extends AppCompatActivity  {
     String snsphotourl;
 
 
-    final postContent post = new postContent();
+    postContent post = new postContent();
+    tmpstorageService tmpsave;
+    boolean mBound = false;
+    private ServiceConnection mConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            Log.d("여기는 업로드다 오바 ", "데이터 전달 하고싶다" );
+            tmpstorageService.MyBinder mb = (tmpstorageService.MyBinder ) service;
+            tmpsave = mb.getService();
+            mBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            tmpsave = null;
+            mBound = false;
+        }
+    };
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sns_upload);
+        Intent intent = new Intent(getApplicationContext(), tmpstorageService.class);
+        startService(intent);
+        bindService(intent, // intent 객체
+                mConnection, // 서비스와 연결에 대한 정의
+                Context.BIND_AUTO_CREATE);
+        Log.d("여기는 업로드다 오바 ", "서비스 시작 하고싶다" );
+
+
 
         //서비스 켜져있는지파악, 켜져있다면 데이타 있는지 파악. 있다면 받아옴
 
@@ -53,10 +89,6 @@ public class sns_upload extends AppCompatActivity  {
 
         Button upload = findViewById(R.id.button_upload);
         Button tempSave = findViewById(R.id.button_tempSave);
-
-
-
-
         RadioGroup place = findViewById(R.id.RadioGroub_place);
         RadioGroup difficulty = findViewById(R.id.RadioGroub_difficulty);
         RadioGroup sex = findViewById(R.id.RadioGroub_sex);
@@ -128,12 +160,13 @@ public class sns_upload extends AppCompatActivity  {
 
 
                 post.setCompleted(true);
-                Log.d("Title", post.getTitle());
+              /*  Log.d("Title", post.getTitle());
                 Log.d("Content", post.getContent());
                 Log.d("Place", "" + post.getPlace());
                 Log.d("Difficulty", "" + post.getDifficulty());
                 Log.d("Sex", "" + post.getSex());
                 Log.d("Frequency", "" + post.getFrequency());
+
                 Log.d("Time", "" + post.getTime());
                 uploadsns();
                 ComponentName componentName = new ComponentName(
@@ -144,6 +177,14 @@ public class sns_upload extends AppCompatActivity  {
                 intent1.setComponent(componentName);
 
                 startActivity(intent1);
+
+                Log.d("Time", "" + post.getTime());*/
+                //uploadsns();
+                post = tmpsave.getTmppost();
+                Log.d("여기는 업로드다 오바 ", "데이터 받아왔다 하고싶다"+post.getSex() );
+
+
+
                 //post 객체 FB로 업로드
 
             }
@@ -184,6 +225,9 @@ public class sns_upload extends AppCompatActivity  {
                 Log.d("Sex", "" + post.getSex());
                 Log.d("Frequency", "" + post.getFrequency());
                 Log.d("Time", "" + post.getTime());
+                tmpsave.setTmppost(post);
+
+
 
                 Intent intent = new Intent(getApplicationContext(), tmpstorageService.class);
                 intent.putExtra("postContent",post);
@@ -198,6 +242,7 @@ public class sns_upload extends AppCompatActivity  {
                 intent1.setComponent(componentName);
 
                 startActivity(intent1);
+
 
 
                // uploadsns();
@@ -216,13 +261,14 @@ public class sns_upload extends AppCompatActivity  {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             for (UserInfo profile : user.getProviderData()) {
-                // Name, email address, and profile photo Url
+                //현재 로그인한사람의 이름 가져와야함
                 String name = profile.getDisplayName();
+                post.setUserUid(user.getUid());
                 post.setUserID(name);
 
             }
         }
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();// title+name 이 게시물 고유키
         db.collection("PostContents").document(post.getTitle()+post.getUserID()).set(post)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -301,6 +347,7 @@ public class sns_upload extends AppCompatActivity  {
         else if (requestCode == 1235 && resultCode == RESULT_CANCELED) {
             RequestOptions option1 = new RequestOptions().circleCrop();
             Glide.with(getApplicationContext()).load(R.drawable.sample).apply(option1).into(snsimage);
+            post.setPhoto(null);
             // Create a storage reference from our app
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
