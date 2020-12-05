@@ -18,6 +18,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class sns_routine extends AppCompatActivity {
     String name;
     String title;
@@ -64,15 +66,48 @@ public class sns_routine extends AppCompatActivity {
                 TextView gender = findViewById(R.id.text_gender);
                 TextView frequency = findViewById(R.id.text_frequency);
                 TextView time = findViewById(R.id.text_time);
+                CircleImageView imgView_place = findViewById(R.id.icon_place);
+                CircleImageView imgView_gender = findViewById(R.id.icon_gender);
 
+                String tmp = new String();
                 routineTitle.setText(title);
                 content.setText(postcontent.getContent());
                 uploaderName.setText(name);
-                place.setText(postcontent.getPlace() + "");
-                difficulty.setText(postcontent.getDifficulty() + "");
-                gender.setText(postcontent.getSex() + "");
+                if (postcontent.getPlace() == postcontent.PLACE_FITNESSCENTER){
+                    tmp = "헬스장";
+                    imgView_place.setImageResource(R.drawable.icon_gym);
+                }
+                else if (postcontent.getPlace() == postcontent.PLACE_HOME){
+                    imgView_place.setImageResource(R.drawable.icon_home);
+                    tmp = "집";
+                }
+                else if (postcontent.getPlace() == postcontent.PLACE_OUTDOOR){
+                    imgView_place.setImageResource(R.drawable.icon_outdoor);
+                    tmp = "야외";
+                }
+                place.setText(tmp);
+                if (postcontent.getDifficulty()==postcontent.DIFFICULTY_NOVICE){
+                    tmp = "초급";
+                }
+                else if(postcontent.getDifficulty()==postcontent.DIFFICULTY_INTERMEDIATE){
+                    tmp = "중급";
+                }
+                else if(postcontent.getDifficulty()==postcontent.DIFFICULTY_ADVANCE){
+                    tmp = "상급";
+                }
+                difficulty.setText(tmp);
 
-                String tmp = new String();
+                if(postcontent.getSex()==postcontent.SEX_MALE){
+                    tmp = "남성";
+                    imgView_gender.setImageResource(R.drawable.icon_male);
+                }
+                else if(postcontent.getSex()==postcontent.SEX_FEMALE){
+                    tmp = "여성";
+                    imgView_gender.setImageResource(R.drawable.icon_women);
+                }
+                gender.setText(tmp);
+
+
                 if(postcontent.getFrequency() == postcontent.FREQUENCY_FOURFIVE){
                     tmp = "주 4~5일";
                 }
@@ -85,7 +120,16 @@ public class sns_routine extends AppCompatActivity {
 
                 frequency.setText(tmp);
 
-                time.setText(postcontent.getTime()+"");
+                if (postcontent.getTime()==postcontent.TIME_TWENTYTOFORTY){
+                    tmp = "20~40분";
+                }
+                else if (postcontent.getTime()==postcontent.TIME_FORTYTOSEVENTY){
+                    tmp = "40~70분";
+                }
+                else if (postcontent.getTime()==postcontent.TIME_ABOVESEVENTY){
+                    tmp = "70분이상";
+                }
+               time.setText(tmp);
 
 
             }

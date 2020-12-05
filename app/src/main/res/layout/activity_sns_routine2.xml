@@ -173,6 +173,7 @@
                 android:layout_weight="1">
                 <de.hdodenhof.circleimageview.CircleImageView
                     xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/icon_place"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
@@ -232,7 +233,7 @@
                 android:orientation="vertical">
                 <de.hdodenhof.circleimageview.CircleImageView
                     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+                    android:id="@+id/icon_gender"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_gravity="center_horizontal"
@@ -274,7 +275,7 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/icon_home"
+                    android:src="@drawable/calendar"
                     app:civ_border_width="2dp"
                     app:civ_border_color="#FF111111"/>
 
@@ -304,7 +305,7 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/icon_home"
+                    android:src="@drawable/clock"
                     app:civ_border_width="2dp"
                     app:civ_border_color="#FF111111"/>
 
@@ -330,26 +331,14 @@
                 android:orientation="vertical">
                 <de.hdodenhof.circleimageview.CircleImageView
                     xmlns:app="http://schemas.android.com/apk/res-auto"
-
+                    android:visibility="invisible"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/icon_home"
                     app:civ_border_width="2dp"
                     app:civ_border_color="#FF111111"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:textSize="23dp"
-                    android:text="장소" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:textSize="18dp"
-                    android:text="집" />
             </LinearLayout>
         </LinearLayout>
 

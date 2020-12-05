@@ -3,6 +3,7 @@ package com.example.yourhealth;
 public class profile {
 
     private String name;
+    private String job;
     private String sex;
     private String purpose;
     private String where;
@@ -52,5 +53,13 @@ public class profile {
 
     public void setUserphothurl(String userphothurl) {
         this.userphothurl = userphothurl;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
     }
 }

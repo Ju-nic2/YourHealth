@@ -5,7 +5,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ComponentName;
+
 import android.content.Context;
+
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.net.Uri;
@@ -161,10 +163,23 @@ public class sns_upload extends AppCompatActivity  {
                 Log.d("Difficulty", "" + post.getDifficulty());
                 Log.d("Sex", "" + post.getSex());
                 Log.d("Frequency", "" + post.getFrequency());
+
+                Log.d("Time", "" + post.getTime());
+                uploadsns();
+                ComponentName componentName = new ComponentName(
+                        "com.example.yourhealth",
+                        "com.example.yourhealth.sns_main"
+                );
+                Intent intent1 = new Intent();
+                intent1.setComponent(componentName);
+
+                startActivity(intent1);
+
                 Log.d("Time", "" + post.getTime());*/
                 //uploadsns();
                 post = tmpsave.getTmppost();
                 Log.d("여기는 업로드다 오바 ", "데이터 받아왔다 하고싶다"+post.getSex() );
+
 
 
                 //post 객체 FB로 업로드
@@ -208,6 +223,23 @@ public class sns_upload extends AppCompatActivity  {
                 Log.d("Frequency", "" + post.getFrequency());
                 Log.d("Time", "" + post.getTime());
                 tmpsave.setTmppost(post);
+
+
+
+                Intent intent = new Intent(getApplicationContext(), tmpstorageService.class);
+                intent.putExtra("postContent",post);
+                startService(intent);
+
+
+                ComponentName componentName = new ComponentName(
+                        "com.example.yourhealth",
+                        "com.example.yourhealth.sns_main"
+                );
+                Intent intent1 = new Intent();
+                intent1.setComponent(componentName);
+
+                startActivity(intent1);
+
 
 
                // uploadsns();
