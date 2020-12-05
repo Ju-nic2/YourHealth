@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -135,7 +136,14 @@ public class sns_upload extends AppCompatActivity  {
                 Log.d("Frequency", "" + post.getFrequency());
                 Log.d("Time", "" + post.getTime());
                 uploadsns();
+                ComponentName componentName = new ComponentName(
+                        "com.example.yourhealth",
+                        "com.example.yourhealth.sns_main"
+                );
+                Intent intent1 = new Intent();
+                intent1.setComponent(componentName);
 
+                startActivity(intent1);
                 //post 객체 FB로 업로드
 
             }
@@ -180,6 +188,18 @@ public class sns_upload extends AppCompatActivity  {
                 Intent intent = new Intent(getApplicationContext(), tmpstorageService.class);
                 intent.putExtra("postContent",post);
                 startService(intent);
+
+
+                ComponentName componentName = new ComponentName(
+                        "com.example.yourhealth",
+                        "com.example.yourhealth.sns_main"
+                );
+                Intent intent1 = new Intent();
+                intent1.setComponent(componentName);
+
+                startActivity(intent1);
+
+
                // uploadsns();
 
                 //post 객체 FB로 업로드
