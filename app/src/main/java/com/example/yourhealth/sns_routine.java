@@ -33,12 +33,13 @@ public class sns_routine extends AppCompatActivity {
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
         title = intent.getStringExtra("title");
+
         final Boolean heart_clicked = Boolean.FALSE;
-        ImageView hartBtn = findViewById(R.id.heart);//하트 버튼        TextView numOfHeart = findViewById(R.id.NumOfHeart);
+        ImageView hartBtn = findViewById(R.id.heart);
+        //하트 버튼        TextView numOfHeart = findViewById(R.id.NumOfHeart);
         //이거 널 오류 뜨네 왠지는 모르겠음
         //getNum_heart() 하니간 널오류임 음 업로드때 안넣어놔서 그런듯
         // numOfHeart.setText(postcontent.getNum_heart()+"");
-
 
 
 
@@ -49,11 +50,11 @@ public class sns_routine extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 postcontent = documentSnapshot.toObject(postContent.class);
 
+
                 Log.d("이거 카테고리",  postcontent.getCategory1());
                 Log.d("이거 카테고리",  postcontent.getCategory2());
                 Log.d("이거 카테고리",  postcontent.getCategory3());
                 Log.d("이거 카테고리",  postcontent.getUserID());
-
                 TextView routineTitle = findViewById(R.id.text_title);
                 TextView content = findViewById(R.id.text_content);
                 ImageView image = findViewById(R.id.main_image);
@@ -85,6 +86,7 @@ public class sns_routine extends AppCompatActivity {
                 frequency.setText(tmp);
 
                 time.setText(postcontent.getTime()+"");
+
 
             }
         });

@@ -24,6 +24,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class mainmenuActivity extends AppCompatActivity implements View.OnClickListener {
     TextView username;
     TextView userpurpose;
@@ -32,55 +34,64 @@ public class mainmenuActivity extends AppCompatActivity implements View.OnClickL
     ImageView userphoto;
     String image;
 
-    Button tmpBtn;
+    CircleImageView snsBtn;
+    CircleImageView todyaBtn;
+    CircleImageView storageBtn;
+    CircleImageView diaryBtn;
+
+    profile  curuser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainmenu);
+
         username = findViewById(R.id.mainname);
         userpurpose = findViewById(R.id.mainpurpose);
-        userplace = findViewById(R.id.mainpurpose2);
         userphoto = findViewById(R.id.mainPhoto);
 
-        tmpBtn = findViewById(R.id.tmptestbutton);
-        tmpBtn.setOnClickListener(this);
+        snsBtn = findViewById(R.id.snsmenubutton);
+        todyaBtn = findViewById(R.id.todaymenubutton);
+        storageBtn = findViewById(R.id.storagemenubutton);
+        diaryBtn = findViewById(R.id.diarymenubutton);
+
+        snsBtn.setOnClickListener(this);
+        todyaBtn.setOnClickListener(this);
+        storageBtn.setOnClickListener(this);
+        diaryBtn.setOnClickListener(this);
+
+
+
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         DocumentReference docRef = db.collection("Users").document(user.getUid());
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                       username.setText( document.getString("name"));
-                        userpurpose.setText( document.getString("purpose"));
-                        userplace.setText( document.getString("where"));
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                curuser = documentSnapshot.toObject(profile.class);
 
-                            RequestOptions option1 = new RequestOptions().circleCrop();
-                            Glide.with(getApplicationContext()).load(document.getString("userphothurl")).error(R.drawable.sample).apply(option1).into(userphoto);
-
-                      //  Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                    } else {
-                    //    Log.d(TAG, "No such document");
-                    }
-                } else {
-                  //  Log.d(TAG, "get failed with ", task.getException());
+                if(curuser.getUserphothurl()==null){
+                    RequestOptions option1 = new RequestOptions().circleCrop();
+                    Glide.with(getApplicationContext()).load(R.drawable.sample).apply(option1).into(userphoto);
+                }else{
+                    String tmp = curuser.getUserphothurl();
+                    RequestOptions option1 = new RequestOptions().circleCrop();
+                    Glide.with(getApplicationContext()).load(tmp).placeholder(R.drawable.loading).apply(option1).into(userphoto);
                 }
+                username.setText(curuser.getName()+" 님");
+                userpurpose.setText(curuser.getPurpose());
             }
         });
-
-
     }
 
     @Override
     public void onClick(View view) {
-        if(view == tmpBtn){
+        if(view == snsBtn){
             Intent intent = new Intent(getApplicationContext(), sns_main.class);
             startActivity(intent);
         }
+
     }
 }

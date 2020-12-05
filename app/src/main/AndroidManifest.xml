@@ -99,7 +99,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".tmpstorageService" />
+        <service android:name=".tmpstorageService"
+            android:exported="true"/>
     </application>
 
 </manifest>

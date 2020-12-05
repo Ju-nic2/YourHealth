@@ -85,6 +85,7 @@ public class sns_weekly_recyclerAdapter {
                         );
                         Intent intent = new Intent();
                         intent.setComponent(componentName);
+                        //postID 대신 title+name 이 게시물 고유키
                        intent.putExtra("title", title);
                        intent.putExtra("name",name);
                         view.getContext().startActivity(intent);

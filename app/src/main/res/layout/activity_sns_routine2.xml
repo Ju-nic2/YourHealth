@@ -13,14 +13,14 @@
 
         <TextView
 
-            android:id="@+id/text_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#8FBBDD"
-            android:gravity="center_horizontal"
-            android:text="4주 복근 운동 루틴"
-            android:textSize="30dp"
-            android:textStyle="bold" />
+        android:id="@+id/text_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#8FBBDD"
+        android:gravity="center_horizontal"
+        android:text="4주 복근 운동 루틴"
+        android:textSize="30dp"
+        android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/main_image"

@@ -78,7 +78,7 @@ public class logInActivity extends AppCompatActivity implements View.OnClickList
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             showToast("로그인!");
-                            Intent intent = new Intent(getApplicationContext(), sns_upload.class);
+                            Intent intent = new Intent(getApplicationContext(), mainmenuActivity.class);
                             startActivity(intent);
                         //    updateUI(user);
                         } else {

@@ -95,10 +95,11 @@ public class sns_main_recyclerAdapter extends RecyclerView.Adapter<sns_main_recy
                             "com.example.yourhealth",
                             "com.example.yourhealth.sns_weekly"
                     );
+                    //인텐트 setComponentNAMe 으로 한이유뭐임
                     Intent intent = new Intent();
                     intent.setComponent(componentName);
-
                     intent.putExtra("category", category);
+                    //인텐트 setComponentNAMe 으로 한이유뭐임
                     view.getContext().startActivity(intent);
                 }
             });
