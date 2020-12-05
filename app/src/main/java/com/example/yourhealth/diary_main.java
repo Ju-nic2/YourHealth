@@ -16,6 +16,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 
 public class diary_main extends AppCompatActivity {
@@ -38,6 +42,8 @@ public class diary_main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary_main);
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         addDiaryBoxBtn = findViewById(R.id.button_add_diary_box);
@@ -113,6 +119,13 @@ public class diary_main extends AppCompatActivity {
                     //Log.d("rep", data.getRep());
 
                     dataBox.getDay().add(data);
+                    if(user == null)
+                        db.collection(user.getUid()+"Daily").document("test").set(dataBox);
+                    else{
+                        db.collection(user.getUid()+"Daily").document(dataBox.getDate()).set(dataBox);
+                    }
+
+
                 }
 
                 for(int i = 0; i < dataBox.getDay().size(); i++)

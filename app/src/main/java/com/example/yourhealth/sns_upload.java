@@ -153,12 +153,9 @@ public class sns_upload extends AppCompatActivity  {
                 post.setCategory2(category2.getText().toString());
                 post.setCategory3(category3.getText().toString());
                 post.setCategory4(category4.getText().toString());
-
-
-
-
                 post.setCompleted(true);
-              /*  Log.d("Title", post.getTitle());
+
+                /*  Log.d("Title", post.getTitle());
                 Log.d("Content", post.getContent());
                 Log.d("Place", "" + post.getPlace());
                 Log.d("Difficulty", "" + post.getDifficulty());
