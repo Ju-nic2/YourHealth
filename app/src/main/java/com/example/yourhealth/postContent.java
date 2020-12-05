@@ -15,6 +15,7 @@ public class postContent implements Serializable
     private String photo;
     private Routine routine;
     private String userID;
+    private String userUid;
     private String category1;
     private String category2;
     private String category3;
@@ -162,6 +163,13 @@ public class postContent implements Serializable
 
     public String getUserID() {
         return userID;
+    }
+
+    public void setUserUid(String userID) {
+        this.userUid = userUid;
+    }
+    public String getUserUid() {
+        return userUid;
     }
 
     public void setUserID(String userID) {

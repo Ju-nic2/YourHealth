@@ -1,6 +1,7 @@
 package com.example.yourhealth;
 
 public class profile {
+
     private String name;
     private String sex;
     private String purpose;
@@ -14,6 +15,7 @@ public class profile {
         this.where = where;
         this.userphothurl = userphothurl;
     }
+    public profile(){}
 
     public String getName(){
         return this.name;

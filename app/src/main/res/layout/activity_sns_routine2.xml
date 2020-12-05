@@ -13,18 +13,21 @@
 
         <TextView
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#8FBBDD"
-            android:gravity="center_horizontal"
-            android:text="4주 복근 운동 루틴"
-            android:textSize="30dp"
-            android:textStyle="bold" />
+        android:id="@+id/text_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#8FBBDD"
+        android:gravity="center_horizontal"
+        android:text="4주 복근 운동 루틴"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
         <ImageView
-            android:layout_marginVertical="15dp"
+            android:id="@+id/main_image"
             android:layout_width="wrap_content"
             android:layout_height="150dp"
-            android:src="@drawable/abs"/>
+            android:layout_marginVertical="15dp"
+            android:src="@drawable/abs" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -139,7 +142,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView19"
+                    android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textSize="20dp"
@@ -184,11 +187,12 @@
                     android:text="장소" />
 
                 <TextView
+                    android:id="@+id/text_place"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:textSize="18dp"
-                    android:text="집" />
+                    android:text="집"
+                    android:textSize="18dp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -214,11 +218,12 @@
                     android:textSize="23dp" />
 
                 <TextView
+                    android:id="@+id/text_difficulty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:textSize="18dp"
-                    android:text="초급" />
+                    android:text="초급"
+                    android:textSize="18dp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -242,11 +247,12 @@
                     android:text="대상" />
 
                 <TextView
+                    android:id="@+id/text_gender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:textSize="18dp"
-                    android:text="여성" />
+                    android:text="여성"
+                    android:textSize="18dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -271,19 +277,21 @@
                     android:src="@drawable/icon_home"
                     app:civ_border_width="2dp"
                     app:civ_border_color="#FF111111"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:textSize="23dp"
-                    android:text="장소" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:textSize="18dp"
-                    android:text="집" />
+                    android:text="운동일수"
+                    android:textSize="23dp" />
+
+                <TextView
+                    android:id="@+id/text_frequency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="3~5일"
+                    android:textSize="18dp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -299,19 +307,21 @@
                     android:src="@drawable/icon_home"
                     app:civ_border_width="2dp"
                     app:civ_border_color="#FF111111"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:textSize="23dp"
-                    android:text="장소" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:textSize="18dp"
-                    android:text="집" />
+                    android:text="소요시간"
+                    android:textSize="23dp" />
+
+                <TextView
+                    android:id="@+id/text_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="40~60분"
+                    android:textSize="18dp" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -344,11 +354,12 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/text_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:background="@drawable/border"
             android:layout_marginTop="10dp"
+            android:background="@drawable/border"
+            android:padding="20dp"
             android:text="이 운동은 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 어쩌구 저쩌구 " />
 
         <Button

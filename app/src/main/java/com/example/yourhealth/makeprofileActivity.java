@@ -369,6 +369,7 @@ public class makeprofileActivity extends AppCompatActivity implements View.OnCli
         }else if(requestCode == 1234 && resultCode == RESULT_CANCELED){
             RequestOptions option1 = new RequestOptions().circleCrop();
             Glide.with(getApplicationContext()).load(R.drawable.sample).apply(option1).into(userProfilePhoth);
+            userphotourl = null;
             // Create a storage reference from our app
             FirebaseStorage storage = FirebaseStorage.getInstance();
             StorageReference storageRef = storage.getReference();
