@@ -74,7 +74,7 @@ public class diary_start extends AppCompatActivity {
                                // Log.d(TAG, "No such document");
                             }
                         } else {
-                            //아예 문서가 없데그 날짜에 해당하는 운동  작성 해
+                            //아예 문서가 없데그 날짜에 해당하는 운동  작성 해`
                             writeDiaryBtn.setText(date + " 운동일지 작성");
                            // Log.d(TAG, "get failed with ", task.getException());
                         }
