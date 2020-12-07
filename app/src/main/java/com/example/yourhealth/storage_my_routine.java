@@ -50,8 +50,8 @@ public class storage_my_routine extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                        final View view1 = layoutInflater.inflate(R.layout.diary_box_my_routine, null);
-                        deleteDiaryBoxBtn = view1.findViewById(R.id.button_delete_diary_box_myR);
+                        final View view1 = layoutInflater.inflate(R.layout.my_routine_diary_box, null);
+                        deleteDiaryBoxBtn = view1.findViewById(R.id.button_save_my_routine_diary_box);
                         deleteDiaryBoxBtn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {

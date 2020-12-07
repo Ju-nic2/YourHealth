@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="right">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:text="나만의 루틴 만들기"
+            android:fontFamily="@font/main_font"
+            android:textColor="#000000"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/button_save_my_routine_diary_box"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/main_font"
+            android:text="저장"
+            android:textColor="#000000"
+            android:background="@drawable/button_color"
+            android:textSize="18sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <EditText
+            android:id="@+id/storage_my_routine_diary_memo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#3FC8BB"
+            android:fontFamily="@font/main_font"
+            android:hint="Memo" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="10dp" />
+
+        <Button
+            android:id="@+id/button_add_my_routine_diary_box"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/button_circle"
+            android:fontFamily="@font/main_font"
+            android:text="추가"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/container_my_routine_diary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+</LinearLayout>

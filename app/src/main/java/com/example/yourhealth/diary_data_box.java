@@ -2,9 +2,10 @@ package com.example.yourhealth;
 
 import android.view.View;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class diary_data_box extends diary_data{
+public class diary_data_box extends diary_data implements Serializable {
 
     private String date;
     private String memo;
