@@ -1,5 +1,7 @@
 package com.example.yourhealth;
 
+import java.util.ArrayList;
+
 public class profile {
 
     private String name;
@@ -8,6 +10,8 @@ public class profile {
     private String purpose;
     private String where;
     private String userphothurl;
+    private ArrayList<String> storage = new ArrayList<String>();
+    private Routine ingRoutine;
 
     public profile(String name,String sex,String purpose,String where, String userphothurl){
         this.name = name;
@@ -58,8 +62,16 @@ public class profile {
     public String getJob() {
         return job;
     }
-
     public void setJob(String job) {
         this.job = job;
     }
+
+    public Routine getingRoutine() {
+        return ingRoutine;
+    }
+    public void setingRoutine(Routine ingRoutine) {
+        this.ingRoutine = ingRoutine;
+    }
+
+
 }

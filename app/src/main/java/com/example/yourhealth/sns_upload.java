@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -40,16 +41,19 @@ import com.google.firebase.storage.UploadTask;
 public class sns_upload extends AppCompatActivity  {
 
     Button imageUplode;
+    Button routinUploadBtn;
+
     ImageView snsimage;
     Uri snsimageUri;
     String snsphotourl;
+
+    TextView routineText;
 
 
     postContent post = new postContent();
     tmpstorageService tmpsave;
     boolean mBound = false;
     private ServiceConnection mConnection = new ServiceConnection() {
-
         @Override
         public void onServiceConnected(ComponentName className,
                                        IBinder service) {
@@ -85,6 +89,9 @@ public class sns_upload extends AppCompatActivity  {
         //서비스 켜져있는지파악, 켜져있다면 데이타 있는지 파악. 있다면 받아옴
 
         imageUplode = findViewById(R.id.button_imageupload);
+        routinUploadBtn = findViewById(R.id.button_routineupload);
+        routineText = findViewById(R.id.routineText);
+
         snsimage = findViewById(R.id.snsimage);
 
         Button upload = findViewById(R.id.button_upload);
@@ -194,6 +201,13 @@ public class sns_upload extends AppCompatActivity  {
                 startActivityForResult(intent, 1235);
             }
         });
+        routinUploadBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), storage_start.class);
+                startActivityForResult(intent, 1212);
+            }
+        });
         tempSave.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -289,6 +303,14 @@ public class sns_upload extends AppCompatActivity  {
 
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1212 && resultCode == RESULT_OK){
+            routineText.setText(data.getData().toString());
+        }
+
+
+
+
+
         if (requestCode == 1235 && resultCode == RESULT_OK) {
             snsimageUri=data.getData();
             RequestOptions option1 = new RequestOptions().circleCrop();
