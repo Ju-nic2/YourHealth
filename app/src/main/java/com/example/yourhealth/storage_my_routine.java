@@ -1,5 +1,6 @@
 package com.example.yourhealth;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -8,25 +9,45 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.util.Log;
+import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 
 public class storage_my_routine extends AppCompatActivity {
 
     Button addMyRoutineBoxBtn;
     Button deleteMyRoutineBoxBtn;
+    Button saveRoutineBoxBtn;
     Button addDiaryBoxBtn;
     Button deleteDiaryBoxBtn;
     LinearLayout myRoutineContainer;
     LinearLayout diaryContainer;
     LinearLayout myRoutineBox;
+    EditText routineTitle;
+    String title;
     ArrayList<diary_data_box> day_list = new ArrayList<diary_data_box>();
+
+    Routine myRoutine;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage_my_routine);
+         user = FirebaseAuth.getInstance().getCurrentUser();
+
+
+        saveRoutineBoxBtn = findViewById(R.id.button_save_routine_box);
+        routineTitle = findViewById(R.id.routineTitle);
 
         addMyRoutineBoxBtn = findViewById(R.id.button_add_my_routine_box);
         //deleteMyRoutineBoxBtn = findViewById(R.id.button_delete_my_routine_box);
@@ -63,13 +84,34 @@ public class storage_my_routine extends AppCompatActivity {
                 myRoutineContainer.addView(view);
             }
         });
+
+        saveRoutineBoxBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                title = routineTitle.getText().toString();
+                myRoutine = new Routine(title,user.getUid(),day_list,0);
+                db.collection("Routins").document(user.getUid()+"#"+title).set(myRoutine)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                 Log.d("루틴저장", "루틴 저장함"+title);
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.d("루틴 저장 실패", "루틴 저장못함"+title);
+                            }
+                        });
+            }
+        });
     }
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
 
 
         if (resultCode==RESULT_OK) {
-
             diary_data_box d = data.getParcelableExtra("data");
             //diary_data_box d = (diary_data_box) data.getSerializableExtra("data");
 

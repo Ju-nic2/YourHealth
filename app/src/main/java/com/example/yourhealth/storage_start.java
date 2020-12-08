@@ -36,10 +36,7 @@ public class storage_start extends AppCompatActivity {
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case MSG_A ://루틴목록 가져왔음
-                  for(int i=0;i<routinelist.size();i++){
-                      // 여기서 이 배열가지고 화면에 띄워주는 메소드 실행 하면 됨.
-                      Log.d("저장소 목록 불러옴", routinelist.get(i)+" 이거지");
-                  }
+                  routinelist = getRealTitle(routinelist);
                     break;
                 case MSG_B :
                     Log.d("저장소 목록 못불러옴", "이게 아닌데 "); break ;
@@ -48,7 +45,7 @@ public class storage_start extends AppCompatActivity {
             }
         }
     } ;
-    ArrayList routinelist = new ArrayList();
+    ArrayList<String> routinelist = new ArrayList();
 
     Button writeRoutineBtn;
 
@@ -110,5 +107,17 @@ public class storage_start extends AppCompatActivity {
         getfdpost.start();
 
 
+    }
+    public ArrayList getRealTitle( ArrayList tmplist){
+
+        ArrayList cut = new ArrayList();
+        for(int i = 0; i<tmplist.size();i++){
+            String tmp = (String) tmplist.get(i);
+            // "#" 문자 이후 문자열부터 끝까지
+            tmp = tmp.substring(tmp.lastIndexOf("#")+1);
+            cut.add(tmp);
+            Log.d("저장소 목록 불러옴", cut.get(i)+" 이거지");
+        }
+        return cut;
     }
 }
