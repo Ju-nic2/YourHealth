@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
+import android.util.Log;
 import java.util.ArrayList;
 
 public class storage_my_routine extends AppCompatActivity {
@@ -70,9 +70,10 @@ public class storage_my_routine extends AppCompatActivity {
 
         if (resultCode==RESULT_OK) {
 
-            Intent intent = getIntent();
-            diary_data_box d = (diary_data_box) intent.getSerializableExtra("data");
+            diary_data_box d = data.getParcelableExtra("data");
+            //diary_data_box d = (diary_data_box) data.getSerializableExtra("data");
 
+            Log.d("hi","hi");
             day_list.add(d);
         }
 

@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
     Runnable r = new Runnable() {
         @Override
         public void run() {
+
 // 4초뒤에 다음화면(MainActivity)으로 넘어가기 Handler 사용
             Intent intent = new Intent(getApplicationContext(), logInActivity.class);
             startActivity(intent); // 다음화면으로 넘어가기
