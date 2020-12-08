@@ -76,14 +76,12 @@ public class sns_main extends AppCompatActivity implements View.OnClickListener{
                 Log.d("데이터 가져오는중", " => " + "시작" + "카테고리");
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                final CollectionReference PostContents = db.collection("PostContents");
-
                 PostContents.get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
-
                                         //카테고리 입력 받음
                                         String tmp = document.getData().get("category1").toString();
                                         //중복확인

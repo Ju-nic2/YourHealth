@@ -38,19 +38,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:backgroundTint="#3FC8BB"
-                android:fontFamily="@font/main_font"
-                android:hint="제목" />
-
             <Button
                 android:id="@+id/button_add_my_routine_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
+                android:layout_gravity = "right"
                 android:fontFamily="@font/main_font"
                 android:text="추가"
                 android:textColor="#000000"
