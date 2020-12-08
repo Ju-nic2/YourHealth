@@ -46,7 +46,10 @@ public class storage_my_routine extends AppCompatActivity {
                 view.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(this, storage_my_routine_diary.class);
+                        //원래 니코드인데 오류남 this 써서 그런거같은데 니꺼에선 안남?
+                        //Intent intent = new Intent(this, storage_my_routine_diary.class);
+                        //밑에걸로 수정함 그러니까 돌아는감
+                        Intent intent = new Intent(getApplicationContext(), storage_my_routine_diary.class);
                         startActivityForResult(intent, 11);
                     }
                 });

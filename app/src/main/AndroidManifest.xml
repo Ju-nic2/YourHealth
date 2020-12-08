@@ -13,6 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".storage_my_routine_diary">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".storage_my_routine">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,8 +43,7 @@
         </activity>
         <activity
             android:name=".diary_main"
-            android:theme="@style/DiaryTheme">
-        </activity>
+            android:theme="@style/DiaryTheme"></activity>
         <activity android:name=".sns_routine">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -94,8 +100,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".tmpstorageService"
-            android:exported="true"/>
+
+        <service
+            android:name=".tmpstorageService"
+            android:exported="true" />
     </application>
 
 </manifest>

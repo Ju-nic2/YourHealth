@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/diary_box_myR"
+    android:id="@+id/my_routine_diary_box"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerHorizontal="true"
@@ -32,8 +32,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <Button
-                android:id="@+id/button_delete_diary_box_myR"
+                android:id="@+id/button_delete_my_routine_box"
                 android:background="@drawable/button_circle"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
