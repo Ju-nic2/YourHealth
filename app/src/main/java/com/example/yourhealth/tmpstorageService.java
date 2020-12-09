@@ -16,8 +16,6 @@ import androidx.annotation.Nullable;
             postContent tmppost;
             public static boolean SERVICE_CONNECTED = false;
 
-
-
             IBinder mBinder = new MyBinder();
 
             class MyBinder extends Binder {

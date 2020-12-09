@@ -238,8 +238,6 @@ public class sns_upload extends AppCompatActivity  {
                 Log.d("Time", "" + post.getTime());
                 tmpsave.setTmppost(post);
 
-
-
                 Intent intent = new Intent(getApplicationContext(), tmpstorageService.class);
                 intent.putExtra("postContent",post);
                 startService(intent);
@@ -306,8 +304,6 @@ public class sns_upload extends AppCompatActivity  {
         if(requestCode == 1212 && resultCode == RESULT_OK){
             routineText.setText(data.getData().toString());
         }
-
-
 
 
 

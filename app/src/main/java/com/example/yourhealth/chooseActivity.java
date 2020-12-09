@@ -44,6 +44,7 @@ public class chooseActivity extends FragmentActivity implements View.OnClickList
 
         setDefault = findViewById(R.id.setdefault);
         setDefault.setOnClickListener(this);
+
     }
 
     @Override

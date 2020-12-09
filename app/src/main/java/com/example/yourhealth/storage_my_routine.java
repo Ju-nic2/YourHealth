@@ -14,15 +14,13 @@ import android.widget.LinearLayout;
 import android.util.Log;
 import android.widget.TextView;
 
-<<<<<<< HEAD
-=======
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
->>>>>>> d6d2f83f758dd3c9b02b803f6c49850cef712660
+
 import java.util.ArrayList;
 
 public class storage_my_routine extends AppCompatActivity {
@@ -35,12 +33,12 @@ public class storage_my_routine extends AppCompatActivity {
     LinearLayout myRoutineContainer;
     LinearLayout diaryContainer;
     LinearLayout myRoutineBox;
-<<<<<<< HEAD
+
     TextView myRoutineMemo;
-=======
+
     EditText routineTitle;
     String title;
->>>>>>> d6d2f83f758dd3c9b02b803f6c49850cef712660
+
     ArrayList<diary_data_box> day_list = new ArrayList<diary_data_box>();
     String memo;
 
