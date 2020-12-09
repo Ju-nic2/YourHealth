@@ -119,8 +119,6 @@ public class memberActivity extends AppCompatActivity implements View.OnClickLis
                             showToast("회원가입 완료");
                             logIn();
                             showToast("로그인~~");
-
-
                             //updateUI(user);
                         } else {
                             showToast("이메일 형식을 지켜주세요");

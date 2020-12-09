@@ -247,18 +247,46 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/button_imageupload"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#F1924A"
-            android:text="사진 업로드" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#F1924A"
-            android:text="루틴 업로드" />
+            <Button
+                android:id="@+id/button_imageupload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#F1924A"
+                android:text="사진 업로드" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="TextView" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button_routineupload"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#F1924A"
+                android:text="루틴 업로드" />
+
+            <TextView
+                android:id="@+id/routineText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/custom"
+                android:gravity="center"
+                android:text="TextView" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"

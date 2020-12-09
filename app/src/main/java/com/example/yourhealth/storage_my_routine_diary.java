@@ -69,6 +69,7 @@ public class storage_my_routine_diary extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 memo = diaryMemo.getText().toString();
+                dataBox.setMemo(memo);
 
                 for(int i = 0; i < view_list.size(); i++)
                 {

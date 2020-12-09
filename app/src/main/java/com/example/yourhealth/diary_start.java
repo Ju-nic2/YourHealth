@@ -39,7 +39,7 @@ public class diary_start extends AppCompatActivity {
         writeDiaryBtn = findViewById(R.id.button_write_diary);
         mCalendarView = findViewById(R.id.calendarView);
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-         final FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
        mCalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
