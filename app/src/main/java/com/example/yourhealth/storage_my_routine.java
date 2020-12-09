@@ -35,6 +35,7 @@ public class storage_my_routine extends AppCompatActivity {
 
     TextView myRoutineMemo;
 
+
     EditText routineTitle;
     String title;
 
@@ -49,7 +50,7 @@ public class storage_my_routine extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage_my_routine);
-         user = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
 
         saveRoutineBoxBtn = findViewById(R.id.button_save_routine_box);
