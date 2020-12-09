@@ -29,21 +29,47 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class storage_start extends AppCompatActivity {
+    private class stringTMP{
+        String string;
+
+        public String getString() {
+            return string;
+        }
+
+        public void setString(String string) {
+            this.string = string;
+        }
+    }
     private final Handler mHandler = new Handler() {
         private final int MSG_A = 0 ;
         private final int MSG_B = 1 ;
 
         @Override
         public void handleMessage(Message msg) {
-            int routine_num;
+            final stringTMP s = new stringTMP();
+
+
+
             LinearLayout lin = findViewById(R.id.linear);
+            final Intent intent = new Intent(getApplicationContext(), sns_upload.class);
             switch (msg.what) {
                 case MSG_A ://루틴목록 가져왔음
                   routinelist = getRealTitle(routinelist);
                   for (int i=0; i<routinelist.size(); i++){
-                      Button button = new Button(storage_start.this);
+                      final Button button = new Button(storage_start.this);
                       button.setText(routinelist.get(i));
                       lin.addView(button);
+                      s.setString(routinelist.get(i));
+                      button.setOnClickListener(new View.OnClickListener(){
+
+                          @Override
+                          public void onClick(View view) {
+
+                              intent.putExtra("data", s.getString());
+                              setResult(RESULT_OK, intent); //응답 전달 후
+                              finish();  //종료
+                          }
+                      });
 
 
                   }
