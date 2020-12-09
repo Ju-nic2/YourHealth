@@ -47,7 +47,7 @@ public class storage_start extends AppCompatActivity {
 
 
                   }
-                  storage_start.this.setContentView(lin);
+
                     break;
                 case MSG_B :
                     Log.d("저장소 목록 못불러옴", "이게 아닌데 "); break ;
