@@ -6,14 +6,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
@@ -24,6 +28,7 @@ public class sns_routine extends AppCompatActivity {
     String name;
     String title;
     postContent postcontent;
+    Button downloadBtn;
 
     int check = 1;
 
@@ -35,6 +40,7 @@ public class sns_routine extends AppCompatActivity {
         Intent intent = getIntent();
         name = intent.getStringExtra("name");
         title = intent.getStringExtra("title");
+        downloadBtn = findViewById(R.id.button_download);
 
         final Boolean heart_clicked = Boolean.FALSE;
         ImageView hartBtn = findViewById(R.id.heart);
@@ -42,16 +48,16 @@ public class sns_routine extends AppCompatActivity {
         //이거 널 오류 뜨네 왠지는 모르겠음
         //getNum_heart() 하니간 널오류임 음 업로드때 안넣어놔서 그런듯
         // numOfHeart.setText(postcontent.getNum_heart()+"");
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
 
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        final FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("PostContents").document(title+name);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 postcontent = documentSnapshot.toObject(postContent.class);
-
 
                 Log.d("이거 카테고리",  postcontent.getCategory1());
                 Log.d("이거 카테고리",  postcontent.getCategory2());
@@ -132,6 +138,13 @@ public class sns_routine extends AppCompatActivity {
                time.setText(tmp);
 
 
+            }
+        });
+        downloadBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DocumentReference washingtonRef = db.collection("Users").document(user.getUid());
+                washingtonRef.update("storage", FieldValue.arrayUnion(postcontent.getRoutine()));
             }
         });
 

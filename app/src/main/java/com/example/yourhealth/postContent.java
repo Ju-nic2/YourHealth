@@ -13,7 +13,7 @@ public class postContent implements Serializable
     private int time;
     private Boolean completed;
     private String photo;
-    private Routine routine;
+    private String routine;
     private String userID;
     private String userUid;
     private String category1;
@@ -106,11 +106,11 @@ public class postContent implements Serializable
         this.photo = photo;
     }
 
-    public Routine getRoutine() {
+    public String getRoutine() {
         return routine;
     }
 
-    public void setRoutine(Routine routine) {
+    public void setRoutine(String routine) {
         this.routine = routine;
     }
     public Boolean getCompleted() {
