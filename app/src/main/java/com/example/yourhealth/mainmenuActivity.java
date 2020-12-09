@@ -59,7 +59,41 @@ public class mainmenuActivity extends AppCompatActivity implements View.OnClickL
         todyaBtn.setOnClickListener(this);
         storageBtn.setOnClickListener(this);
         diaryBtn.setOnClickListener(this);
+/*
+        todyaBtn.setOnClickListener(new View.OnClickListener(){
 
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), today_start.class);
+                startActivity(intent);
+            }
+        });
+
+ */
+        snsBtn.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), sns_main.class);
+                startActivity(intent);
+            }
+        });
+        diaryBtn.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), diary_start.class);
+                startActivity(intent);
+            }
+        });
+        storageBtn.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), storage_my_routine.class);
+                startActivity(intent);
+            }
+        });
 
 
 
