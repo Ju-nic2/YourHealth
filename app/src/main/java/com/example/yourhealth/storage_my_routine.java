@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.util.Log;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 public class storage_my_routine extends AppCompatActivity {
@@ -36,6 +38,7 @@ public class storage_my_routine extends AppCompatActivity {
         //diaryContainer = findViewById(R.id.container_diary_myR);
         myRoutineBox = findViewById(R.id.my_routine_Box);
 
+
         addMyRoutineBoxBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +46,7 @@ public class storage_my_routine extends AppCompatActivity {
                 final View view = layoutInflater.inflate(R.layout.my_routine_box, null);
                 diaryContainer = view.findViewById(R.id.container_diary_myR);
                 deleteMyRoutineBoxBtn = view.findViewById(R.id.button_delete_my_routine_box);
+
                 view.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view) {
@@ -73,8 +77,9 @@ public class storage_my_routine extends AppCompatActivity {
             diary_data_box d = data.getParcelableExtra("data");
             //diary_data_box d = (diary_data_box) data.getSerializableExtra("data");
 
-            Log.d("hi","hi");
+
             day_list.add(d);
+            Log.d("hi","hi");
         }
 
 
