@@ -77,11 +77,11 @@ public class sns_upload extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sns_upload);
-        Intent intent = new Intent(getApplicationContext(), tmpstorageService.class);
-        startService(intent);
-        bindService(intent, // intent 객체
-                mConnection, // 서비스와 연결에 대한 정의
-                Context.BIND_AUTO_CREATE);
+      //  Intent intent = new Intent(getApplicationContext(), tmpstorageService.class);
+      //  startService(intent);
+       // bindService(intent, // intent 객체
+         //       mConnection, // 서비스와 연결에 대한 정의
+       //         Context.BIND_AUTO_CREATE);
         Log.d("여기는 업로드다 오바 ", "서비스 시작 하고싶다" );
 
 
@@ -204,8 +204,10 @@ public class sns_upload extends AppCompatActivity  {
         routinUploadBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                //루틴 제목 불러오기
                 Intent intent = new Intent(getApplicationContext(), storage_start.class);
                 startActivityForResult(intent, 1212);
+                //set Post 유저 UiD+불러온 루틴 제목
             }
         });
         tempSave.setOnClickListener(new View.OnClickListener() {
@@ -237,8 +239,6 @@ public class sns_upload extends AppCompatActivity  {
                 Log.d("Frequency", "" + post.getFrequency());
                 Log.d("Time", "" + post.getTime());
                 tmpsave.setTmppost(post);
-
-
 
                 Intent intent = new Intent(getApplicationContext(), tmpstorageService.class);
                 intent.putExtra("postContent",post);
@@ -306,8 +306,6 @@ public class sns_upload extends AppCompatActivity  {
         if(requestCode == 1212 && resultCode == RESULT_OK){
             routineText.setText(data.getData().toString());
         }
-
-
 
 
 

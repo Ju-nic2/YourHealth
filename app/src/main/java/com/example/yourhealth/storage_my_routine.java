@@ -13,8 +13,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.util.Log;
 import android.widget.TextView;
-
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,8 +33,8 @@ public class storage_my_routine extends AppCompatActivity {
     LinearLayout diaryContainer;
     LinearLayout myRoutineBox;
 
-
     TextView myRoutineMemo;
+
 
     EditText routineTitle;
     String title;
@@ -52,7 +50,7 @@ public class storage_my_routine extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage_my_routine);
-         user = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
 
         saveRoutineBoxBtn = findViewById(R.id.button_save_routine_box);

@@ -37,6 +37,17 @@ android:layout_height="match_parent">
             android:orientation="vertical">
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/button_write_routine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_color"
+            android:fontFamily="@font/main_font"
+            android:text="나만의 루틴 만들기"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
     </LinearLayout>
 
 </ScrollView>

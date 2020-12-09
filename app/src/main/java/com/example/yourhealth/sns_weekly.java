@@ -53,6 +53,7 @@ public class sns_weekly extends AppCompatActivity {
             Handler handler = mHandler ;
 
             weeklypost(){}
+
             @Override
             public void run(){
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -64,6 +65,7 @@ public class sns_weekly extends AppCompatActivity {
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
+                                        Log.d("중복안되서 넣음이라는 메세지 받음", "상윤형담아 넣었데 ");
                                         post data = new post();
                                         data.setName(document.getData().get("userID").toString());
                                         data.setTitle(document.getData().get("title").toString());
@@ -73,6 +75,7 @@ public class sns_weekly extends AppCompatActivity {
                                         handler.sendMessage(message);
                                     }
                                 } else {
+
                                 }
                             }
 
