@@ -14,15 +14,14 @@ import android.widget.LinearLayout;
 import android.util.Log;
 import android.widget.TextView;
 
-<<<<<<< HEAD
-=======
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
->>>>>>> d6d2f83f758dd3c9b02b803f6c49850cef712660
+
 import java.util.ArrayList;
 
 public class storage_my_routine extends AppCompatActivity {
@@ -35,12 +34,9 @@ public class storage_my_routine extends AppCompatActivity {
     LinearLayout myRoutineContainer;
     LinearLayout diaryContainer;
     LinearLayout myRoutineBox;
-<<<<<<< HEAD
     TextView myRoutineMemo;
-=======
     EditText routineTitle;
     String title;
->>>>>>> d6d2f83f758dd3c9b02b803f6c49850cef712660
     ArrayList<diary_data_box> day_list = new ArrayList<diary_data_box>();
     String memo;
 
@@ -73,13 +69,14 @@ public class storage_my_routine extends AppCompatActivity {
                 final View view = layoutInflater.inflate(R.layout.my_routine_box, null);
                 diaryContainer = view.findViewById(R.id.container_diary_myR);
                 deleteMyRoutineBoxBtn = view.findViewById(R.id.button_delete_my_routine_box);
-                myRoutineMemo = view.findViewById(R.id.my_routine_memo);
+                //
                 view.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view) {
                         //원래 니코드인데 오류남 this 써서 그런거같은데 니꺼에선 안남?
                         //Intent intent = new Intent(this, storage_my_routine_diary.class);
                         //밑에걸로 수정함 그러니까 돌아는감
+                        myRoutineMemo = view.findViewById(R.id.my_routine_memo);
                         Intent intent = new Intent(getApplicationContext(), storage_my_routine_diary.class);
                         startActivityForResult(intent, 11);
                     }
