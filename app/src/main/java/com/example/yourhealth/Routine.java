@@ -45,9 +45,6 @@ public class Routine {
         this.last = last;
     }
 
-    public diary_data_box getCurRoutine(int cur){
-        return routine.get(cur);
-    }
 
 
 }

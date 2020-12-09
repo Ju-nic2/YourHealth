@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
@@ -104,7 +105,21 @@ public class storage_my_routine extends AppCompatActivity {
             public void onClick(View view) {
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 title = routineTitle.getText().toString();
-                myRoutine = new Routine(title,user.getUid(),day_list,0);
+                myRoutine = new Routine(title,user.getUid(),day_list,-1);
+                DocumentReference newCityRef = db.collection("Users").document(user.getUid());
+                newCityRef .update("routine", myRoutine)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                //Log.d(TAG, "DocumentSnapshot successfully updated!");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                              //  Log.w(TAG, "Error updating document", e);
+                            }
+                        });
                 db.collection("Routins").document(user.getUid()+"#"+title).set(myRoutine)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
