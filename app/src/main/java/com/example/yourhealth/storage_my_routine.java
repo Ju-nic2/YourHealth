@@ -35,9 +35,12 @@ public class storage_my_routine extends AppCompatActivity {
     LinearLayout diaryContainer;
     LinearLayout myRoutineBox;
 
+
+
     TextView myRoutineMemo;
     EditText routineTitle;
     String title;
+
 
     ArrayList<diary_data_box> day_list = new ArrayList<diary_data_box>();
     String memo;

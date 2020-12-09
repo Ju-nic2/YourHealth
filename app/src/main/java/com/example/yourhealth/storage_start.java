@@ -10,6 +10,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -34,9 +35,19 @@ public class storage_start extends AppCompatActivity {
 
         @Override
         public void handleMessage(Message msg) {
+            int routine_num;
+            LinearLayout lin = findViewById(R.id.linear);
             switch (msg.what) {
                 case MSG_A ://루틴목록 가져왔음
                   routinelist = getRealTitle(routinelist);
+                  for (int i=0; i<routinelist.size(); i++){
+                      Button button = new Button(storage_start.this);
+                      button.setText(routinelist.get(i));
+                      lin.addView(button);
+
+
+                  }
+                  storage_start.this.setContentView(lin);
                     break;
                 case MSG_B :
                     Log.d("저장소 목록 못불러옴", "이게 아닌데 "); break ;
@@ -120,4 +131,6 @@ public class storage_start extends AppCompatActivity {
         }
         return cut;
     }
+
+
 }
