@@ -21,10 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 52c4c7edc4d06925d1927104523932a488727d16
 import java.util.ArrayList;
 
 public class storage_my_routine extends AppCompatActivity {
@@ -37,18 +34,11 @@ public class storage_my_routine extends AppCompatActivity {
     LinearLayout myRoutineContainer;
     LinearLayout diaryContainer;
     LinearLayout myRoutineBox;
-<<<<<<< HEAD
+
     TextView myRoutineMemo;
     EditText routineTitle;
     String title;
-=======
 
-    TextView myRoutineMemo;
-
-    EditText routineTitle;
-    String title;
-
->>>>>>> 52c4c7edc4d06925d1927104523932a488727d16
     ArrayList<diary_data_box> day_list = new ArrayList<diary_data_box>();
     String memo;
 
@@ -59,7 +49,7 @@ public class storage_my_routine extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage_my_routine);
-         user = FirebaseAuth.getInstance().getCurrentUser();
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
 
         saveRoutineBoxBtn = findViewById(R.id.button_save_routine_box);
@@ -81,13 +71,11 @@ public class storage_my_routine extends AppCompatActivity {
                 final View view = layoutInflater.inflate(R.layout.my_routine_box, null);
                 diaryContainer = view.findViewById(R.id.container_diary_myR);
                 deleteMyRoutineBoxBtn = view.findViewById(R.id.button_delete_my_routine_box);
-<<<<<<< HEAD
-                //
-=======
+
 
                 myRoutineMemo = view.findViewById(R.id.my_routine_memo);
 
->>>>>>> 52c4c7edc4d06925d1927104523932a488727d16
+
                 view.setOnClickListener(new View.OnClickListener(){
                     @Override
                     public void onClick(View view) {
