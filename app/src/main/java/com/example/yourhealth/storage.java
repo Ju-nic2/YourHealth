@@ -57,9 +57,7 @@ public class storage extends AppCompatActivity {
                     for (int i=0; i<storaglist.size(); i++){
                         Log.d("text", storaglist.get(i));
                         final Button button = new Button(storage.this);
-
          button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT){
-
                         });
                         button.setOnClickListener(new View.OnClickListener(){
 
@@ -94,7 +92,7 @@ public class storage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage);
-        Button button = findViewById(R.id.button);
+        Button button = findViewById(R.id.mybutton);
         final Intent intent = new Intent(this, storage_my_routine.class);
         button.setOnClickListener(new View.OnClickListener(){
 
@@ -123,7 +121,7 @@ public class storage extends AppCompatActivity {
                                 Log.d("저장소 목록보자 ", "어디야 2 ");
                                 routinelist = (ArrayList) document.get("storage");
                                 Message message = handler.obtainMessage();
-                                if(routinelist.size()>0) {
+                                if(routinelist != null) {
                                     message.what = 0;
                                 }else{
                                     message.what = 1;

@@ -43,7 +43,7 @@ public class today_start extends AppCompatActivity implements View.OnClickListen
                     myprofile = (profile) msg.obj;
                     curroutine =  myprofile.getRoutine();
                     if(curroutine ==  null  ) {
-                        Intent intent = new Intent(getApplicationContext(), diary_main.class);
+                        Intent intent = new Intent(getApplicationContext(), diary_start.class);
                         startActivity(intent);
                     }
                     else {
