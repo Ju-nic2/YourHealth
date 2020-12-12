@@ -304,7 +304,8 @@ public class sns_upload extends AppCompatActivity  {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1212 && resultCode == RESULT_OK){
-            routineText.setText(data.getData().toString());
+            routineText.setText(data.getStringExtra("data"));
+            Log.d("text", routineText.getText().toString());
         }
 
 

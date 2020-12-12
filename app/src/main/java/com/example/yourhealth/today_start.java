@@ -39,6 +39,7 @@ public class today_start extends AppCompatActivity {
                     curroutine =  myprofile.getRoutine();
                     d=curroutine.getRoutine().get(curroutine.getLast());
                     Log.d("중복안되서 넣음이라는 메세지 받음", "상윤형담아 넣었데" + curroutine.getLast());
+                    memo = d.getMemo();
                     sex();
                     break;
                 case MSG_B:
@@ -56,7 +57,9 @@ public class today_start extends AppCompatActivity {
     //Button saveDiaryBoxBtn;
     LinearLayout todayContainer;
     //LinearLayout diaryBox;
+
     EditText diaryMemo;
+    String memo;
 
 
     //파베가 어케 넘어오는지 몰라서 걍 객체 변수로 일단 코드짬
@@ -68,6 +71,8 @@ public class today_start extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
         class today extends Thread {
             Handler handler = mHandler;
@@ -106,8 +111,6 @@ public class today_start extends AppCompatActivity {
         todayWorkout.start();
 
 
-
-
     }
 
     public void sex() {
@@ -129,6 +132,7 @@ public class today_start extends AppCompatActivity {
             EditText rep = view.findViewById(R.id.rep);
 
             //설정 해줘
+            diaryMemo.setText(memo);
             exercise.setText(tmp.getExercise());
             weight.setText(tmp.getWeight());
             set.setText(tmp.getSet());
