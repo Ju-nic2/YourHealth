@@ -59,6 +59,8 @@ public class storage extends AppCompatActivity {
                         final Button button = new Button(storage.this);
          button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT){
                         });
+                        button.setText(storaglist.get(i).toString());
+
                         button.setOnClickListener(new View.OnClickListener(){
 
                    @Override

@@ -141,6 +141,7 @@ public class storage_my_routine extends AppCompatActivity {
                                 Log.d("루틴 저장 실패", "루틴 저장못함"+title);
                             }
                         });
+                finish();
             }
         });
     }
