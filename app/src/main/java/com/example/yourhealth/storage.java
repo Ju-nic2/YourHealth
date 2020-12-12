@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -55,19 +56,16 @@ public class storage extends AppCompatActivity {
             final Intent intent = new Intent();
             switch (msg.what) {
                 case MSG_A ://루틴목록 가져왔음
-                    routinelist = getRealTitle(routinelist);
-                    for (int i=0; i<routinelist.size(); i++){
-                        Log.d("text", routinelist.get(i));
+                    storaglist = getRealTitle(routinelist);
+                    for (int i=0; i<storaglist.size(); i++){
+                        Log.d("text", storaglist.get(i));
                         final Button button = new Button(storage.this);
-                        button.setText(routinelist.get(i));
+                        button.setText(storaglist.get(i));
                         button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT){
 
                         });
                         lin.addView(button);
-                        final String tmp = routinelist.get(i);
-
-
-
+                        final String tmp = storaglist.get(i);
                     }
 
 
@@ -80,8 +78,12 @@ public class storage extends AppCompatActivity {
         }
     } ;
     ArrayList<String> routinelist = new ArrayList();
+    ArrayList<String> storaglist = new ArrayList();
 
     Button writeRoutineBtn;
+    Routine curroutine;
+    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,10 +101,6 @@ public class storage extends AppCompatActivity {
         });
 
 
-
-
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        final FirebaseFirestore db = FirebaseFirestore.getInstance();
         Log.d("저장소 목록보자 ", user.getUid());
         class weeklypost extends Thread{
             Handler handler = mHandler ;
@@ -138,7 +136,6 @@ public class storage extends AppCompatActivity {
         weeklypost getfdpost = new weeklypost();
         getfdpost.start();
 
-
     }
     public ArrayList getRealTitle( ArrayList tmplist){
 
@@ -151,6 +148,37 @@ public class storage extends AppCompatActivity {
             Log.d("저장소 목록 불러옴", cut.get(i)+" 이거지");
         }
         return cut;
+    }
+    public void setroutine(){
+        DocumentReference docRef = db.collection("Routins").document("uid+#+title");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                //데이터 가져오기 성공해
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        curroutine = document.toObject(Routine.class);
+                    } else {
+                    }
+                }
+            }
+        });
+        DocumentReference newCityRef = db.collection("Users").document(user.getUid());
+        newCityRef.update("routine", curroutine)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        //Log.d(TAG, "DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //  Log.w(TAG, "Error updating document", e);
+                    }
+                });
+
     }
 
 

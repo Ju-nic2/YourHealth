@@ -113,19 +113,7 @@ public class storage_my_routine extends AppCompatActivity {
                 title = routineTitle.getText().toString();
                 myRoutine = new Routine(title,user.getUid(),day_list,-1);
                 DocumentReference newCityRef = db.collection("Users").document(user.getUid());
-                newCityRef.update("routine", myRoutine)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                //Log.d(TAG, "DocumentSnapshot successfully updated!");
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                              //  Log.w(TAG, "Error updating document", e);
-                            }
-                        });
+
                 newCityRef.update("storage", FieldValue.arrayUnion(user.getUid()+"#"+title))
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
