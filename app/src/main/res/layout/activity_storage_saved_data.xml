@@ -24,7 +24,7 @@
             android:gravity="right">
 
             <Button
-                android:id="@+id/button_save_saved_data"
+                android:id="@+id/button_save_storage_saved_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/main_font"
@@ -38,7 +38,7 @@
                 android:layout_height="10dp" />
 
             <EditText
-                android:id="@+id/saved_data_memo"
+                android:id="@+id/storage_saved_data_memo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#3FC8BB"
@@ -50,7 +50,7 @@
                 android:layout_height="10dp" />
 
             <Button
-                android:id="@+id/button_add_saved_data"
+                android:id="@+id/button_add_storage_saved_data"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:background="@drawable/button_circle"
@@ -61,7 +61,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/container_saved_data"
+            android:id="@+id/container_storage_saved_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
