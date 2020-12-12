@@ -183,8 +183,11 @@ public class sns_upload extends AppCompatActivity  {
                 startActivity(intent1);
 
                 Log.d("Time", "" + post.getTime());*/
-                //uploadsns();
-                post = tmpsave.getTmppost();
+                uploadsns();
+                Intent intent = new Intent(getApplicationContext(), sns_main.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
+               // post = tmpsave.getTmppost();
                 Log.d("여기는 업로드다 오바 ", "데이터 받아왔다 하고싶다"+post.getSex() );
 
 
@@ -305,6 +308,8 @@ public class sns_upload extends AppCompatActivity  {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1212 && resultCode == RESULT_OK){
             routineText.setText(data.getStringExtra("data"));
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            post.setRoutine(user.getUid()+"#"+data.getStringExtra("data"));
             Log.d("text", routineText.getText().toString());
         }
 

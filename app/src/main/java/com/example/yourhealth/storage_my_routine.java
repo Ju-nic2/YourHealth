@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
@@ -52,8 +53,6 @@ public class storage_my_routine extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage_my_routine);
         user = FirebaseAuth.getInstance().getCurrentUser();
-
-
         saveRoutineBoxBtn = findViewById(R.id.button_save_routine_box);
         routineTitle = findViewById(R.id.routineTitle);
 
@@ -103,11 +102,11 @@ public class storage_my_routine extends AppCompatActivity {
         saveRoutineBoxBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                final FirebaseFirestore db = FirebaseFirestore.getInstance();
                 title = routineTitle.getText().toString();
                 myRoutine = new Routine(title,user.getUid(),day_list,-1);
                 DocumentReference newCityRef = db.collection("Users").document(user.getUid());
-                newCityRef .update("routine", myRoutine)
+                newCityRef.update("routine", myRoutine)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -120,6 +119,20 @@ public class storage_my_routine extends AppCompatActivity {
                               //  Log.w(TAG, "Error updating document", e);
                             }
                         });
+                newCityRef.update("storage", FieldValue.arrayUnion(user.getUid()+"#"+title))
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                //Log.d(TAG, "DocumentSnapshot successfully updated!");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                //  Log.w(TAG, "Error updating document", e);
+                            }
+                        });
+
                 db.collection("Routins").document(user.getUid()+"#"+title).set(myRoutine)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override

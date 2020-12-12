@@ -98,7 +98,7 @@ public class mainmenuActivity extends AppCompatActivity implements View.OnClickL
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), storage_my_routine.class);
+                Intent intent = new Intent(getApplicationContext(), storage_start.class);
                 startActivity(intent);
             }
         });

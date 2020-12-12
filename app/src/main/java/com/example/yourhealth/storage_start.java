@@ -97,9 +97,6 @@ public class storage_start extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage_start);
 
-
-
-
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
         Log.d("저장소 목록보자 ", user.getUid());

@@ -195,6 +195,8 @@ public class sns_main extends AppCompatActivity implements View.OnClickListener 
                                                     });
                                         }
                                         count = 1;
+                                        if(s == 0)
+                                            s=1;
                                         String tmp = document.getData().get("category" + s).toString();
                                         if (!list1.contains(tmp)) {
                                             list1.add(tmp);
