@@ -34,7 +34,7 @@
             android:id="@+id/logoimage"
             android:layout_width="142dp"
             android:layout_height="205dp"
-            app:srcCompat="@drawable/sample" />
+            android:src = "@drawable/icon_logo" />
 
         <TextView
             android:id="@+id/textView4"

@@ -33,7 +33,7 @@ public class storage_my_routine extends AppCompatActivity {
     LinearLayout myRoutineContainer;
     LinearLayout diaryContainer;
     LinearLayout myRoutineBox;
-
+    int index = 0;
     TextView myRoutineMemo;
 
 
@@ -67,8 +67,10 @@ public class storage_my_routine extends AppCompatActivity {
 
 
         addMyRoutineBoxBtn.setOnClickListener(new View.OnClickListener() {
+            int index=-1;
             @Override
             public void onClick(View v) {
+                index+=1;
                 LayoutInflater layoutInflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 final View view = layoutInflater.inflate(R.layout.my_routine_box, null);
                 diaryContainer = view.findViewById(R.id.container_diary_myR);
@@ -79,13 +81,18 @@ public class storage_my_routine extends AppCompatActivity {
 
 
                 view.setOnClickListener(new View.OnClickListener(){
+                   int i=index;
+
+
                     @Override
                     public void onClick(View view) {
                         //원래 니코드인데 오류남 this 써서 그런거같은데 니꺼에선 안남?
                         //Intent intent = new Intent(this, storage_my_routine_diary.class);
                         //밑에걸로 수정함 그러니까 돌아는감
+
                         myRoutineMemo = view.findViewById(R.id.my_routine_memo);
                         Intent intent = new Intent(getApplicationContext(), storage_my_routine_diary.class);
+
                         startActivityForResult(intent, 11);
                     }
                 });
