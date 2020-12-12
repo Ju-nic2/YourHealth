@@ -157,6 +157,8 @@ public class sns_routine extends AppCompatActivity {
             public void onClick(View view) {
                 DocumentReference washingtonRef = db.collection("Users").document(user.getUid());
                 washingtonRef.update("storage", FieldValue.arrayUnion(postcontent.getRoutine()));
+                Intent intent = new Intent(sns_routine.this, mainmenuActivity.class);
+                startActivity(intent);
             }
         });
 
