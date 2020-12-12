@@ -74,7 +74,7 @@
 
             <EditText
                 android:id="@+id/job"
-                android:layout_width="match_parent"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="34dp"
                 android:layout_marginTop="22dp"
