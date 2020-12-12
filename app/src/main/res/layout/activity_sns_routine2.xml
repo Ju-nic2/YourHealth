@@ -24,7 +24,7 @@
 
         <ImageView
             android:id="@+id/main_image"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginVertical="15dp"
             android:src="@drawable/abs" />

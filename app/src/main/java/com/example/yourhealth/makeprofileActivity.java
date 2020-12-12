@@ -57,12 +57,14 @@ public class makeprofileActivity extends AppCompatActivity implements View.OnCli
     String purpose;
     String where;
    String userphotourl;
+   String job;
 
     ImageView userProfilePhoth;
     Uri imageUri;
 
 
     EditText username;
+    EditText userjob;
 
     CheckedTextView diet;
     CheckedTextView strength;
@@ -79,6 +81,9 @@ public class makeprofileActivity extends AppCompatActivity implements View.OnCli
 
         username = findViewById(R.id.uesrName);
         username.addTextChangedListener(textWatcher);
+
+        userjob = findViewById(R.id.job);
+        userjob.addTextChangedListener(textWatcher1);
 
         userProfilePhoth = findViewById(R.id.userphoto);
         userProfilePhoth.setOnClickListener(this);
@@ -131,6 +136,21 @@ public class makeprofileActivity extends AppCompatActivity implements View.OnCli
 
         public void afterTextChanged(Editable s) {
             name = username.getText().toString();
+        }
+    };
+
+    private final TextWatcher textWatcher1 = new TextWatcher() {
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            job = "NULL";
+
+        }
+
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        public void afterTextChanged(Editable s) {
+            job = userjob.getText().toString();
         }
     };
 
@@ -262,12 +282,14 @@ public class makeprofileActivity extends AppCompatActivity implements View.OnCli
         }
         if(view == saveBtn){
             makeProfile();
+            makeUser();
         }
 
        String test = name+" "+sex+" "+purpose+" "+where;
         showToast(test);
     };
-    public void makeProfile(){
+
+    public void makeUser(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(name)
@@ -283,21 +305,19 @@ public class makeprofileActivity extends AppCompatActivity implements View.OnCli
                         }
                     }
                 });
+    }
+    public void makeProfile(){
 
-
-
-
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-
-        profile memberprofile = new profile(name,sex,purpose,where,userphotourl);
+        profile memberprofile = new profile(name,sex,purpose,where,userphotourl,job,null,null);
         db.collection("Users").document(user.getUid()).set(memberprofile)
         .addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 showToast("저장굳");
                 Intent intent = new Intent(getApplicationContext(), logInActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP + Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                // Log.d(TAG, "DocumentSnapshot successfully written!");
             }

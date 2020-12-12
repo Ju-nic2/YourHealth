@@ -3,6 +3,7 @@ package com.example.yourhealth;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,6 +32,7 @@ public class sns_routine extends AppCompatActivity {
     String title;
     postContent postcontent;
     Button downloadBtn;
+    String routineimage;
 
     int check = 1;
 
@@ -50,8 +54,6 @@ public class sns_routine extends AppCompatActivity {
         // numOfHeart.setText(postcontent.getNum_heart()+"");
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-
-
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference docRef = db.collection("PostContents").document(title+name);
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -66,6 +68,16 @@ public class sns_routine extends AppCompatActivity {
                 TextView routineTitle = findViewById(R.id.text_title);
                 TextView content = findViewById(R.id.text_content);
                 ImageView image = findViewById(R.id.main_image);
+                if(postcontent.getPhoto() != null){
+                    RequestOptions option1 = new RequestOptions().circleCrop();
+                    Glide.with(getApplicationContext()).load(postcontent.getPhoto()).placeholder(R.drawable.loading).into(image);
+
+                }
+                else{
+                RequestOptions option1 = new RequestOptions().circleCrop();
+                Glide.with(getApplicationContext()).load(R.drawable.sample).placeholder(R.drawable.loading).apply(option1).into(image);
+                }
+
                 TextView uploaderName = findViewById(R.id.name);
                 TextView place = findViewById(R.id.text_place);
                 TextView difficulty = findViewById(R.id.text_difficulty);

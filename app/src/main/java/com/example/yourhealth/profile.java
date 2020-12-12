@@ -13,12 +13,15 @@ public class profile {
     private ArrayList<String> storage = new ArrayList<String>();
     private Routine routine;
 
-    public profile(String name,String sex,String purpose,String where, String userphothurl){
+    public profile(String name,String sex,String purpose,String where, String userphothurl,String job, ArrayList<String> storage,Routine routine){
         this.name = name;
         this.sex = sex;
         this.purpose = purpose;
         this.where = where;
         this.userphothurl = userphothurl;
+        this.job = job;
+        this.storage = storage;
+        this.routine = routine;
     }
     public profile(){}
 
