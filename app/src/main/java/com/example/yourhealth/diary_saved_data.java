@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
@@ -16,6 +17,8 @@ public class diary_saved_data extends AppCompatActivity {
 
     InputMethodManager imm;
     diary_data_box d;
+
+    //Button addSavedData;
     LinearLayout savedDataContainer;
     EditText savedDataMemo;
     String memo;
@@ -26,6 +29,8 @@ public class diary_saved_data extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diary_saved_data);
+        Button saveSavedDataBtn = findViewById(R.id.button_save_saved_data);
+        //addSavedData.findViewById(R.id.button_add_saved_data);
 
         Intent intent = getIntent();
         d = intent.getParcelableExtra("data");
@@ -71,6 +76,14 @@ public class diary_saved_data extends AppCompatActivity {
             //뷰 추가해
             savedDataContainer.addView(view);
         }
+
+        saveSavedDataBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent backToStart = new Intent(getApplicationContext(), diary_start.class);
+                startActivity(backToStart);
+            }
+        });
     }
 
 

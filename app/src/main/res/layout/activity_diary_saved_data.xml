@@ -24,7 +24,7 @@
             android:gravity="right">
 
             <Button
-                android:id="@+id/button_saved_data"
+                android:id="@+id/button_save_saved_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/main_font"
