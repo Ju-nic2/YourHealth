@@ -317,7 +317,7 @@ public class makeprofileActivity extends AppCompatActivity implements View.OnCli
             public void onSuccess(Void aVoid) {
                 showToast("저장굳");
                 Intent intent = new Intent(getApplicationContext(), logInActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP + Intent.FLAG_ACTIVITY_SINGLE_TOP);
+              //  intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP + Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                // Log.d(TAG, "DocumentSnapshot successfully written!");
             }

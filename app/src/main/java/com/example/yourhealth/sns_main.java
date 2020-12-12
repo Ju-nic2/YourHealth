@@ -78,29 +78,12 @@ public class sns_main extends AppCompatActivity implements View.OnClickListener 
 
             //받은 데이터 가공후 전달
             Handler handler = mHandler;
-
             @Override
             public void run() {
                 Log.d("데이터 가져오는중", " => " + "시작" + "카테고리");
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                DocumentReference docRef = db.collection("Users").document(user.getUid());
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                usercate = document.get("purpose").toString();
-                            } else {
-                                //  Log.d(TAG, "No such document");
-                            }
-                        } else {
-                            // Log.d(TAG, "get failed with ", task.getException());
-                        }
-                    }
-                });
                 final CollectionReference PostContents = db.collection("PostContents");
                 PostContents.get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -110,98 +93,11 @@ public class sns_main extends AppCompatActivity implements View.OnClickListener 
                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                         //카테고리 입력 받음
                                         String tmp = document.getData().get("category1").toString();
-                                        if (usercate.equals(tmp)) {
-                                            s = 1;
-                                        }
-                                        tmp = document.getData().get("category2").toString();
-                                        if (usercate.equals(tmp)) {
-                                            s = 2;
-                                        }
-                                        document.getData().get("category3").toString();
-                                        if (usercate.equals(tmp)) {
-                                            s = 3;
-                                        }
-                                        document.getData().get("category4").toString();
-                                        if (usercate.equals(tmp)) {
-                                            s = 4;
-                                        }
-                                        // list1.add(tmp);
-                                    }
-                                }
-                            }
-                        });
-                PostContents.get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        //사용자랑 겹치는 게있다는 뜻
-                                        if (s != 0 && count ==0 ) {
-                                            list1.add(usercate);
-                                            PostContents.whereEqualTo("category" + s, usercate)
-                                                    .get()
-                                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                                            //postBox에 넣을 post 들 가공
-                                                            post post1 = new post();
-                                                            post post2 = new post();
-                                                            post post3 = new post();
-                                                            postBox pBox = new postBox();
-                                                            //postBox 에는 3개의 post 만 넣을수 있음
-                                                            int count = 0;
-                                                            if (task.isSuccessful()) {
-                                                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                                                    if (count == 0) {
-                                                                        post1.setName(document.getData().get("userID").toString());
-                                                                        post1.setTitle(document.getData().get("title").toString());
-                                                                        pBox.setPost1(post1);
-                                                                        pBox.setCategory(document.getData().get("category1").toString());
-                                                                    } else if (count == 1) {
-                                                                        post2.setName(document.getData().get("userID").toString());
-                                                                        post2.setTitle(document.getData().get("title").toString());
-                                                                        pBox.setPost2(post2);
-                                                                    } else if (count == 2) {
-                                                                        post3.setName(document.getData().get("userID").toString());
-                                                                        post3.setTitle(document.getData().get("title").toString());
-                                                                        pBox.setPost3(post3);
-                                                                    }
-                                                                    count++;
-                                                                    Log.d("이게 데이타지", document.getData().get("category1").toString() + "여기제목" + document.getData().get("title").toString() + " => ");
-                                                                }
-                                                            } else {
-                                                                Log.d("실패띠", "Error getting documents: ", task.getException());
-                                                            }
-                                                            //남은거 채워주기
-                                                            if (count == 1) {
-                                                                post2.setName("준익");
-                                                                post2.setTitle("준익루틴1");
-                                                                pBox.setPost2(post2);
-                                                                post3.setName("준익");
-                                                                post3.setTitle("준익루틴2");
-                                                                pBox.setPost3(post3);
-                                                            } else if (count == 2) {
-                                                                post3.setName("준익");
-                                                                post3.setTitle("준익루틴2");
-                                                                pBox.setPost3(post3);
-                                                            }
-                                                            Message message = handler.obtainMessage();
-                                                            message.what = 0;
-                                                            message.obj = pBox;
-                                                            //완성된 pBox전달
-                                                            handler.sendMessage(message);
-                                                        }
-                                                    });
-                                        }
-                                        count = 1;
-                                        if(s == 0)
-                                            s=1;
-                                        String tmp = document.getData().get("category" + s).toString();
-                                        if (!list1.contains(tmp)) {
+
+                                        if(!list1.contains(tmp)) {
                                             list1.add(tmp);
                                             //원하는 카테고리에 있는 postcontent 가져옴
-                                            PostContents.whereEqualTo("category" + s, tmp)
+                                            PostContents.whereEqualTo("category1", tmp)
                                                     .get()
                                                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                                         @Override
@@ -215,40 +111,40 @@ public class sns_main extends AppCompatActivity implements View.OnClickListener 
                                                             int count = 0;
                                                             if (task.isSuccessful()) {
                                                                 for (QueryDocumentSnapshot document : task.getResult()) {
-                                                                    if (count == 0) {
+                                                                    if(count ==0){
                                                                         post1.setName(document.getData().get("userID").toString());
                                                                         post1.setTitle(document.getData().get("title").toString());
                                                                         pBox.setPost1(post1);
                                                                         pBox.setCategory(document.getData().get("category1").toString());
-                                                                    } else if (count == 1) {
+                                                                    }else if(count == 1){
                                                                         post2.setName(document.getData().get("userID").toString());
                                                                         post2.setTitle(document.getData().get("title").toString());
                                                                         pBox.setPost2(post2);
-                                                                    } else if (count == 2) {
+                                                                    }else if(count == 2){
                                                                         post3.setName(document.getData().get("userID").toString());
                                                                         post3.setTitle(document.getData().get("title").toString());
                                                                         pBox.setPost3(post3);
                                                                     }
                                                                     count++;
-                                                                    Log.d("이게 데이타지", document.getData().get("category1").toString() + "여기제목" + document.getData().get("title").toString() + " => ");
+                                                                    Log.d("이게 데이타지", document.getData().get("category1").toString()+"여기제목"+document.getData().get("title").toString() + " => ");
                                                                 }
                                                             } else {
                                                                 Log.d("실패띠", "Error getting documents: ", task.getException());
                                                             }
                                                             //남은거 채워주기
-                                                            if (count == 1) {
+                                                            if(count == 1 ){
                                                                 post2.setName("준익");
                                                                 post2.setTitle("준익루틴1");
                                                                 pBox.setPost2(post2);
                                                                 post3.setName("준익");
                                                                 post3.setTitle("준익루틴2");
                                                                 pBox.setPost3(post3);
-                                                            } else if (count == 2) {
+                                                            }else if(count == 2){
                                                                 post3.setName("준익");
                                                                 post3.setTitle("준익루틴2");
                                                                 pBox.setPost3(post3);
                                                             }
-                                                            Message message = handler.obtainMessage();
+                                                            Message message = handler.obtainMessage() ;
                                                             message.what = 0;
                                                             message.obj = pBox;
                                                             //완성된 pBox전달
@@ -256,8 +152,11 @@ public class sns_main extends AppCompatActivity implements View.OnClickListener 
                                                         }
                                                     });
 
-                                        } else {
-                                            // Log.d(TAG, "Error getting documents: ", task.getException());
+                                        }else{
+                                            Message message = handler.obtainMessage() ;
+                                            message.what = 1;
+                                            Log.d("중복됨 안넣음", " => " + tmp + "카테고리");
+                                            handler.sendMessage(message);
                                         }
                                         go();
                                         //getCategoryData();
