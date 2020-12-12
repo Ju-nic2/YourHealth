@@ -100,7 +100,7 @@
                 android:background="#FFFFFF"
                 android:clickable="true"
                 android:scrollbarTrackVertical="?attr/actionModePasteDrawable"
-                android:src="@drawable/icon_sns"
+                android:src="@drawable/icon_today"
                 app:civ_border_color="#FF111111"
                 app:civ_border_width="3dp"
                 app:civ_circle_background_color="#009688" />
@@ -200,7 +200,7 @@
                 android:background="#FFFFFF"
                 android:clickable="true"
                 android:scrollbarTrackVertical="?attr/actionModePasteDrawable"
-                android:src="@drawable/icon_sns"
+                android:src="@drawable/diary_icon"
                 app:civ_border_color="#FF111111"
                 app:civ_border_width="3dp"
                 app:civ_circle_background_color="#009688" />
