@@ -115,6 +115,7 @@ public class mainmenuActivity extends AppCompatActivity implements View.OnClickL
 
 
 
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 

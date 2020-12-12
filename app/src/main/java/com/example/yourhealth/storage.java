@@ -60,8 +60,20 @@ public class storage extends AppCompatActivity {
                         Log.d("text", routinelist.get(i));
                         final Button button = new Button(storage.this);
                         button.setText(routinelist.get(i));
+
                         button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT){
 
+                        });
+                        button.setOnClickListener(new View.OnClickListener(){
+
+
+                            @Override
+                            public void onClick(View v) {
+                                String text = button.getText().toString();
+                                Intent intent = new Intent(storage.this, mainmenuActivity.class);
+
+                                startActivity(intent);
+                            }
                         });
                         lin.addView(button);
                         final String tmp = routinelist.get(i);

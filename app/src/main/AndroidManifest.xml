@@ -86,7 +86,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mainmenuActivity" />
+        <activity android:name=".mainmenuActivity"
+            android:launchMode="singleTask"/>
         <activity
             android:name=".chooseActivity"
             android:theme="@style/chooseTheme" />
