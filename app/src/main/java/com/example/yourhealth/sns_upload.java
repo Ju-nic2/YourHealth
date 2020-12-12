@@ -267,21 +267,26 @@ public class sns_upload extends AppCompatActivity  {
         });
 
     }
+    public void name(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Log.d("이게 유아디지", user.getUid());
+        if (user != null) {
+            for (UserInfo profile : user.getProviderData()) {
+                //현재 로그인한사람의 이름 가져와야함
+                String name = profile.getDisplayName();
+                Log.d("이게 유아디지",name);
+                post.setUserUid(user.getUid().toString());
+                post.setUserID(name);
+
+            }
+        }
+    }
 
 
 
     public void uploadsns(){
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            for (UserInfo profile : user.getProviderData()) {
-                //현재 로그인한사람의 이름 가져와야함
-                String name = profile.getDisplayName();
-                post.setUserUid(user.getUid());
-                post.setUserID(name);
-
-            }
-        }
+        name();
         FirebaseFirestore db = FirebaseFirestore.getInstance();// title+name 이 게시물 고유키
         db.collection("PostContents").document(post.getTitle()+post.getUserID()).set(post)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {

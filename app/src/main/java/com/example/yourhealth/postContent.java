@@ -165,7 +165,7 @@ public class postContent implements Serializable
         return userID;
     }
 
-    public void setUserUid(String userID) {
+    public void setUserUid(String userUid) {
         this.userUid = userUid;
     }
     public String getUserUid() {
