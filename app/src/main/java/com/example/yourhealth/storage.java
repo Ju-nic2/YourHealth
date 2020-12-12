@@ -57,16 +57,16 @@ public class storage extends AppCompatActivity {
                     for (int i=0; i<storaglist.size(); i++){
                         Log.d("text", storaglist.get(i));
                         final Button button = new Button(storage.this);
-                        button.setText(storaglist.get(i));
-                        button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT){
+
+         button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT){
 
                         });
                         button.setOnClickListener(new View.OnClickListener(){
+
                    @Override
                             public void onClick(View v) {
                                 String text = button.getText().toString();
                                 setroutine(text);
-                                Intent intent = new Intent(storage.this, mainmenuActivity.class);
                                 startActivity(intent);
                             }
                         });
