@@ -66,7 +66,7 @@ public class diary_start extends AppCompatActivity {
                                     Log.d("rep", dailydata.getDay().get(i).getRep());
                                 }
                                 //운동일지 불러오기로 버튼 바꿔짐
-                                writeDiaryBtn.setText( "운동일지 불러오기");
+                                writeDiaryBtn.setText("운동일지 불러오기");
                              //   Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                             } else {
                                 //그 날짜에 해당하는 운동 데이터가 없다면 작성 해

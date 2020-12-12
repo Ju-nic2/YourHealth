@@ -22,6 +22,7 @@ public class today_start extends AppCompatActivity {
     //Button saveDiaryBoxBtn;
     LinearLayout todayContainer;
     //LinearLayout diaryBox;
+
     EditText diaryMemo;
 
 
