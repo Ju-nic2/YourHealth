@@ -293,7 +293,6 @@ public class makeprofileActivity extends AppCompatActivity implements View.OnCli
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(name)
-                .setPhotoUri(Uri.parse(userphotourl))
                 .build();
 
         user.updateProfile(profileUpdates)
@@ -316,7 +315,7 @@ public class makeprofileActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onSuccess(Void aVoid) {
                 showToast("저장굳");
-                Intent intent = new Intent(getApplicationContext(), logInActivity.class);
+                Intent intent = new Intent(getApplicationContext(), mainmenuActivity.class);
               //  intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP + Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                // Log.d(TAG, "DocumentSnapshot successfully written!");

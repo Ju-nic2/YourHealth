@@ -274,7 +274,7 @@ public class sns_upload extends AppCompatActivity  {
             for (UserInfo profile : user.getProviderData()) {
                 //현재 로그인한사람의 이름 가져와야함
                 String name = profile.getDisplayName();
-                Log.d("이게 유아디지",name);
+             //   Log.d("이게 유아디지",name);
                 post.setUserUid(user.getUid().toString());
                 post.setUserID(name);
 
