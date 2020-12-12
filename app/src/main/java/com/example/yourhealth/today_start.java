@@ -12,10 +12,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,10 +26,12 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class today_start extends AppCompatActivity {
+public class today_start extends AppCompatActivity implements View.OnClickListener {
     private final Handler mHandler = new Handler() {
         private final int MSG_A = 0;
         private final int MSG_B = 1;
@@ -38,11 +42,9 @@ public class today_start extends AppCompatActivity {
                 case MSG_A://받은객체이용하여 화면에 띄워준다
                     myprofile = (profile) msg.obj;
                     curroutine =  myprofile.getRoutine();
-
                     if(curroutine ==  null  ) {
                         Intent intent = new Intent(getApplicationContext(), diary_main.class);
                         startActivity(intent);
-
                     }
                     else {
                         d = curroutine.getRoutine().get(curroutine.getLast());
@@ -63,7 +65,7 @@ public class today_start extends AppCompatActivity {
     InputMethodManager imm;
     //Button addDiaryBoxBtn;
     //Button deleteDiaryBoxBtn;
-    //Button saveDiaryBoxBtn;
+    Button saveDiaryBoxBtn;
     LinearLayout todayContainer;
     //LinearLayout diaryBox;
 
@@ -77,24 +79,20 @@ public class today_start extends AppCompatActivity {
     profile myprofile;
     Routine curroutine;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)  {
         super.onCreate(savedInstanceState);
-
-
-
         class today extends Thread {
             Handler handler = mHandler;
-
             today() {
             }
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
 
             @Override
             public void run() {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-                DocumentReference docRef = db.collection("Users").document(user.getUid());
+          DocumentReference docRef = db.collection("Users").document(user.getUid());
                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -102,7 +100,7 @@ public class today_start extends AppCompatActivity {
                             DocumentSnapshot document = task.getResult();
                             if (document.exists()) {
                                 Log.d("저장소 목록보자 ", "어디야 2 ");
-                              profile  tmp= document.toObject(profile.class);
+                                profile  tmp= document.toObject(profile.class);
                                 Message message = handler.obtainMessage();
                                 message.obj = tmp;
                                 handler.sendMessage(message);
@@ -123,6 +121,8 @@ public class today_start extends AppCompatActivity {
 
     public void sex() {
         setContentView(R.layout.activity_today_start);
+        saveDiaryBoxBtn = findViewById(R.id.button_save_today);
+        saveDiaryBoxBtn.setOnClickListener(this);
         todayContainer = findViewById(R.id.container_today);
         diaryMemo = findViewById(R.id.today_memo);
         //넘어온 박스에 Day어레이리스트(데이터) 사이즈만큼 돌아
@@ -148,6 +148,37 @@ public class today_start extends AppCompatActivity {
 
             //뷰 추가해
             todayContainer.addView(view);
+        }
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == saveDiaryBoxBtn){
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            long now = System.currentTimeMillis();
+            Date date = new Date(now);
+            SimpleDateFormat mFormat = new SimpleDateFormat("yyyy.MM.dd");
+            String time = mFormat.format(date);
+            Log.d("이거 저장 목록보자 ", time);
+            d.setDate(time);
+            db.collection(user.getUid()+"Daily").document(time).set(d);
+            updatelast();
+            Intent intent = new Intent(getApplicationContext(),mainmenuActivity.class);
+            startActivity(intent);
+        }
+    }
+    public void updatelast(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Log.d("이거 업데이트할꺼야  ", String.valueOf(curroutine.getLast()));
+        if(curroutine.getLast()>=curroutine.getRoutine().size()){
+            DocumentReference newCityRef = db.collection("Users").document(user.getUid());
+            newCityRef.update("routine.last",0);
+        }else{
+            DocumentReference newCityRef = db.collection("Users").document(user.getUid());
+            newCityRef.update("routine.last",curroutine.getLast()+1);
         }
 
     }

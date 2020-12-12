@@ -49,10 +49,7 @@ public class storage extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             final stringTMP s = new stringTMP();
-
-
-
-            LinearLayout lin = findViewById(R.id.linear);
+          LinearLayout lin = findViewById(R.id.linear);
             final Intent intent = new Intent();
             switch (msg.what) {
                 case MSG_A ://루틴목록 가져왔음
@@ -64,12 +61,20 @@ public class storage extends AppCompatActivity {
                         button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT){
 
                         });
+                        button.setOnClickListener(new View.OnClickListener(){
+                   @Override
+                            public void onClick(View v) {
+                                String text = button.getText().toString();
+                                setroutine(text);
+                                Intent intent = new Intent(storage.this, mainmenuActivity.class);
+                                startActivity(intent);
+                            }
+                        });
                         lin.addView(button);
                         final String tmp = storaglist.get(i);
-                    }
 
-
-                    break;
+                   }
+                 break;
                 case MSG_B :
                     Log.d("저장소 목록 못불러옴", "이게 아닌데 "); break ;
 
@@ -142,15 +147,23 @@ public class storage extends AppCompatActivity {
         ArrayList cut = new ArrayList();
         for(int i = 0; i<tmplist.size();i++){
             String tmp = (String) tmplist.get(i);
-            // "#" 문자 이후 문자열부터 끝까지
             tmp = tmp.substring(tmp.lastIndexOf("#")+1);
             cut.add(tmp);
             Log.d("저장소 목록 불러옴", cut.get(i)+" 이거지");
         }
         return cut;
     }
-    public void setroutine(){
-        DocumentReference docRef = db.collection("Routins").document("uid+#+title");
+    public void setroutine(String tmp){
+        int a=0;
+        for(int i = 0; i<routinelist.size();i++){
+            String t = (String) routinelist.get(i);
+            t = t.substring(t.lastIndexOf("#")+1);
+            if(tmp.equals(t))
+                a=i;
+          //  Log.d("저장소 목록 불러옴", cut.get(i)+" 이거지");
+        }
+        Log.d("이거루틴지정", routinelist.get(a));
+        DocumentReference docRef = db.collection("Routins").document(routinelist.get(a));
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -159,16 +172,23 @@ public class storage extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         curroutine = document.toObject(Routine.class);
+                        updatduser();
+                        Log.d("루틴 불러옴", curroutine.getTitle()+" 이거지");
                     } else {
                     }
                 }
             }
         });
+
+
+    }
+    public void updatduser(){
         DocumentReference newCityRef = db.collection("Users").document(user.getUid());
         newCityRef.update("routine", curroutine)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        Log.d("없데이트 불러옴", curroutine.getTitle()+" 이거지");
                         //Log.d(TAG, "DocumentSnapshot successfully updated!");
                     }
                 })
@@ -178,7 +198,6 @@ public class storage extends AppCompatActivity {
                         //  Log.w(TAG, "Error updating document", e);
                     }
                 });
-
     }
 
 

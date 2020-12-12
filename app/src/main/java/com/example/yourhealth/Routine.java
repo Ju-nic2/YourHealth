@@ -41,7 +41,7 @@ public class Routine {
     public int getLast(){
         return this.last;
     }
-    public void setLast(int title) {
+    public void setLast(int last) {
         this.last = last;
     }
 
