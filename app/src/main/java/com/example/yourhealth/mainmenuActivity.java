@@ -59,7 +59,7 @@ public class mainmenuActivity extends AppCompatActivity implements View.OnClickL
         todyaBtn.setOnClickListener(this);
         storageBtn.setOnClickListener(this);
         diaryBtn.setOnClickListener(this);
-/*
+
         todyaBtn.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -69,7 +69,7 @@ public class mainmenuActivity extends AppCompatActivity implements View.OnClickL
             }
         });
 
- */
+
         snsBtn.setOnClickListener(new View.OnClickListener(){
 
             @Override

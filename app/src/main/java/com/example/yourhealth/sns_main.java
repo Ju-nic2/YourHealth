@@ -166,6 +166,7 @@ public class sns_main extends AppCompatActivity implements View.OnClickListener{
         categoryData getcate = new categoryData();
         getcate.start();
 
+
      /*   Thread postThread = new Thread("postThread") {
             public void run() {
                 Log.d("데이터 가져오는중", " => " + "시작" + "카테고리");

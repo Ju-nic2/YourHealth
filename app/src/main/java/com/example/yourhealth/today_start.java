@@ -1,20 +1,54 @@
 package com.example.yourhealth;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class today_start extends AppCompatActivity {
+    private final Handler mHandler = new Handler() {
+        private final int MSG_A = 0;
+        private final int MSG_B = 1;
+
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MSG_A://받은객체이용하여 화면에 띄워준다
+                    myprofile = (profile) msg.obj;
+                    curroutine =  myprofile.getRoutine();
+                    d=curroutine.getRoutine().get(curroutine.getLast());
+                    Log.d("중복안되서 넣음이라는 메세지 받음", "상윤형담아 넣었데" + curroutine.getLast());
+                    sex();
+                    break;
+                case MSG_B:
+                    Log.d("중복되서 안넣음이라는 메세지 받음", "상윤형담아 안넣었데 ");
+                    break;
+
+                // TODO : add case.
+            }
+        }
+    };
 
     InputMethodManager imm;
     //Button addDiaryBoxBtn;
@@ -29,23 +63,64 @@ public class today_start extends AppCompatActivity {
     //파베가 어케 넘어오는지 몰라서 걍 객체 변수로 일단 코드짬
     //박스가 넘어와
     diary_data_box d;
-
+    profile myprofile;
+    Routine curroutine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_today_start);
 
+        class today extends Thread {
+            Handler handler = mHandler;
+
+            today() {
+            }
+
+            @Override
+            public void run() {
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+                DocumentReference docRef = db.collection("Users").document(user.getUid());
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Log.d("저장소 목록보자 ", "어디야 2 ");
+                              profile  tmp= document.toObject(profile.class);
+                                Message message = handler.obtainMessage();
+                                message.obj = tmp;
+                                handler.sendMessage(message);
+                            } else {
+                            }
+                        } else {
+                        }
+                    }
+                });
+            }
+
+        }
+        today todayWorkout = new today();
+        todayWorkout.start();
+
+
+
+
+    }
+
+    public void sex() {
+        setContentView(R.layout.activity_today_start);
         todayContainer = findViewById(R.id.container_today);
         diaryMemo = findViewById(R.id.today_memo);
-
         //넘어온 박스에 Day어레이리스트(데이터) 사이즈만큼 돌아
-        for (int i = 0; i < d.getDay().size(); i++ )
-        {
+        for (int i = 0; i < d.getDay().size(); i++) {
             //임시tmp에 데이에있는 원소 하나 박아
             diary_data tmp = d.getDay().get(i);
             //뷰 생성해
-            LayoutInflater layoutInflater=(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final View view = layoutInflater.inflate(R.layout.diary_box, null);
 
             //생성한거에 에딧텍스트 가져와
@@ -63,5 +138,6 @@ public class today_start extends AppCompatActivity {
             //뷰 추가해
             todayContainer.addView(view);
         }
+
     }
 }

@@ -11,7 +11,7 @@ public class profile {
     private String where;
     private String userphothurl;
     private ArrayList<String> storage = new ArrayList<String>();
-    private Routine ingRoutine;
+    private Routine routine;
 
     public profile(String name,String sex,String purpose,String where, String userphothurl){
         this.name = name;
@@ -66,11 +66,11 @@ public class profile {
         this.job = job;
     }
 
-    public Routine getingRoutine() {
-        return ingRoutine;
+    public Routine getRoutine() {
+        return routine;
     }
-    public void setingRoutine(Routine ingRoutine) {
-        this.ingRoutine = ingRoutine;
+    public void setRoutine(Routine routine) {
+        this.routine = routine;
     }
 
 
