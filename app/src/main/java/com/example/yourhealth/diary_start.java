@@ -58,15 +58,19 @@ public class diary_start extends AppCompatActivity {
                             if (document.exists()) {
                                 //그 날짜에 해당하는 운동 데이터가 있다면 dailydata 에 diary_data_boxg객체 고대로 저장.
                                dailydata = document.toObject(diary_data_box.class);
-                                for(int i = 0; i < dailydata.getDay().size(); i++)
-                                {
-                                    Log.d("exercise", dailydata.getDay().get(i).getExercise());
-                                    Log.d("weight", dailydata.getDay().get(i).getWeight());
-                                    Log.d("set", dailydata.getDay().get(i).getSet());
-                                    Log.d("rep", dailydata.getDay().get(i).getRep());
-                                }
+                               writeDiaryBtn.setText("운동일지 불러오기");
+                               //클론 다이어리 화면으로 넘어감
+
+
+                               for(int i = 0; i < dailydata.getDay().size(); i++)
+                               {
+                                   Log.d("exercise", dailydata.getDay().get(i).getExercise());
+                                   Log.d("weight", dailydata.getDay().get(i).getWeight());
+                                   Log.d("set", dailydata.getDay().get(i).getSet());
+                                   Log.d("rep", dailydata.getDay().get(i).getRep());
+                               }
                                 //운동일지 불러오기로 버튼 바꿔짐
-                                writeDiaryBtn.setText("운동일지 불러오기");
+
                              //   Log.d(TAG, "DocumentSnapshot data: " + document.getData());
                             } else {
                                 //그 날짜에 해당하는 운동 데이터가 없다면 작성 해
@@ -88,13 +92,20 @@ public class diary_start extends AppCompatActivity {
         writeDiaryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(date != null)
+
+                if(writeDiaryBtn.getText() == "운동일지 불러오기")
+                {
+                    Intent intent = new Intent(getApplicationContext(), diary_saved_data.class);
+                    intent.putExtra("data", dailydata);
+                    startActivity(intent);
+                }
+                else if(date != null)
                 {
                     Intent intent = new Intent(getApplicationContext(), diary_main.class);
                     intent.putExtra("cur_date", date);
                     startActivity(intent);
                 }
-                else{
+                else {
                     Toast.makeText(diary_start.this, "날짜를 선택해주세요.", Toast.LENGTH_SHORT).show();
                 }
 
