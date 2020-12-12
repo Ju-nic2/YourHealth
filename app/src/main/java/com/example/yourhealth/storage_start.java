@@ -52,22 +52,25 @@ public class storage_start extends AppCompatActivity {
 
 
             LinearLayout lin = findViewById(R.id.linear);
-            final Intent intent = new Intent(getApplicationContext(), sns_upload.class);
+            final Intent intent = new Intent();
             switch (msg.what) {
                 case MSG_A ://루틴목록 가져왔음
                   routinelist = getRealTitle(routinelist);
                   for (int i=0; i<routinelist.size(); i++){
-
+                      Log.d("text", routinelist.get(i));
                       final Button button = new Button(storage_start.this);
                       button.setText(routinelist.get(i));
+                      button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT){
+
+                      });
                       lin.addView(button);
-                      s.setString(routinelist.get(i));
+                      final String tmp = routinelist.get(i);
                       button.setOnClickListener(new View.OnClickListener(){
 
                           @Override
                           public void onClick(View view) {
 
-                              intent.putExtra("data", s.getString());
+                              intent.putExtra("data",tmp);
                               setResult(RESULT_OK, intent); //응답 전달 후
                               finish();  //종료
                           }
@@ -94,15 +97,8 @@ public class storage_start extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage_start);
 
-        writeRoutineBtn = findViewById(R.id.button_write_routine);
 
-        writeRoutineBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), storage_my_routine.class);
-                startActivity(intent);
-            }
-        });
+
 
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -156,11 +152,6 @@ public class storage_start extends AppCompatActivity {
         return cut;
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-
-    }
 
 
 }
