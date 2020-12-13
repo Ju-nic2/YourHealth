@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -67,7 +68,8 @@ public class storage extends AppCompatActivity {
                             public void onClick(View v) {
                                 String text = button.getText().toString();
                                 setroutine(text);
-                                startActivity(intent);
+                                showToast("루틴이 설정 되었습니다!");
+
                             }
                         });
                         lin.addView(button);
@@ -198,6 +200,10 @@ public class storage extends AppCompatActivity {
                         //  Log.w(TAG, "Error updating document", e);
                     }
                 });
+    }
+    private void showToast(String message) {
+        Toast toast = Toast.makeText(this, message, Toast.LENGTH_SHORT);
+        toast.show();
     }
 
 

@@ -47,10 +47,15 @@ public class today_start extends AppCompatActivity implements View.OnClickListen
                         startActivity(intent);
                     }
                     else {
-                        d = curroutine.getRoutine().get(curroutine.getLast());
-                        Log.d("중복안되서 넣음이라는 메세지 받음", "상윤형담아 넣었데" + curroutine.getLast());
-                        memo = d.getMemo();
-                        sex();
+                        if(curroutine.getRoutine().size()<=curroutine.getLast()+1) {
+                            curroutine.setLast(-1);
+                        }
+                            d = curroutine.getRoutine().get(curroutine.getLast()+1);
+                            Log.d("중복안되서 넣음이라는 메세지 받음", "상윤형담아 넣었데" + curroutine.getLast());
+                            memo = d.getMemo();
+                            sex();
+
+
                     }
                     break;
                 case MSG_B:
@@ -172,14 +177,10 @@ public class today_start extends AppCompatActivity implements View.OnClickListen
     public void updatelast(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Log.d("이거 업데이트할꺼야  ", String.valueOf(curroutine.getLast()));
-        if(curroutine.getLast()>=curroutine.getRoutine().size()){
-            DocumentReference newCityRef = db.collection("Users").document(user.getUid());
-            newCityRef.update("routine.last",0);
-        }else{
+        Log.d("이거 업데이트할꺼야  ", "현 사이즈 "+String.valueOf(curroutine.getRoutine().size())+"라스트"+String.valueOf(curroutine.getLast()));
             DocumentReference newCityRef = db.collection("Users").document(user.getUid());
             newCityRef.update("routine.last",curroutine.getLast()+1);
-        }
+
 
     }
 }

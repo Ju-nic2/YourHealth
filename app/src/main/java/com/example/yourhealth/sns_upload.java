@@ -318,8 +318,6 @@ public class sns_upload extends AppCompatActivity  {
             Log.d("text", routineText.getText().toString());
         }
 
-
-
         if (requestCode == 1235 && resultCode == RESULT_OK) {
             snsimageUri=data.getData();
             RequestOptions option1 = new RequestOptions().circleCrop();
@@ -343,7 +341,6 @@ public class sns_upload extends AppCompatActivity  {
                     // ...
                 }
             });
-
             //저장후 url 받아오기
             uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
